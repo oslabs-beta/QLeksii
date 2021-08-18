@@ -6,17 +6,7 @@ import './style/app.scss';
 
 
 class App extends Component {
-  constructor(){
-  super();
-  this.state={
-    arr: []
-  }
-  }
-
   render() {
-    const clicker=(e)=>{
-      fetch("http://localhost:3333/").then(res => res.json()).then(res=> console.log(res))
-    }
     return (
       // <div>
       //     <h1> Qleksii is running in chill mode! </h1>
