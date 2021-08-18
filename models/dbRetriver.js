@@ -33,11 +33,12 @@ async function gimeData(client, result, dbName){
 };
 
 async function main(req, res, next){
-    const uri = MONGO_URL;
-    const client = new MongoClient(uri);
+    // const uri = MONGO_URL;
+    // console.log('body',req.body.URI);
+    const client = new MongoClient(req.body.URI);
     try {
         await client.connect();
-        const db_hook_name = await linkparser(MONGO_URL);
+        const db_hook_name = await linkparser(req.body.URI);
         const result = await listDatabases(client, db_hook_name);
         res.locals.db_tables = result;
         res.locals.db_data = await  gimeData(client, result, db_hook_name);

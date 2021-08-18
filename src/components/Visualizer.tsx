@@ -1,14 +1,19 @@
 import React, { FunctionComponent }  from "react";
-import ReactDOM from 'react-dom';
+import Card from './Card';
 
-type CardsProps = {
-    table: string,
-    fields: []
+interface Props {
+  tables: Array<string>,
+  fields: Array<object>,
+}
+const Visualizer: FunctionComponent <Props> = ({ tables, fields }) => {
+const output = tables.map((el, i) => <Card table={el} fields={fields[i]}/>);
+return(
+    <div className="wrapper__visualizer">
+     {output}
+    </div>
+);
 }
 
-export const Card: FunctionComponent <CardsProps> ({ table, fields }) =>{<div></div>}
-<h2>{ table }</h2>
+
   
-
-</aside>
-}
+export default Visualizer;
