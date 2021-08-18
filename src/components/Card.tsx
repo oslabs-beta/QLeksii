@@ -6,16 +6,18 @@ type CardsProps = {
 }
 
 const Card: FunctionComponent <CardsProps> = ({ table, fields }) =>{
-// const arr =[];
-// for(let el in fields){
-// arr.push(el, fields[el] )
-// }
+const arr =[];
+for(let el in fields){
+ if(el === null) {arr.push("no documents registered yet")}
+arr.push(<div className='list'><li> {el+ " - " + fields[el]}</li></div>);
+ 
+}
 
 return(
     <div className="wrapper">
       <div className="table">
         <h2 className="table_header">{table}</h2>
-        {/* <p className="table_fields">{fields}</p> */}
+        <div className="table_fields">{arr}</div>
     </div>
     </div>	
 );

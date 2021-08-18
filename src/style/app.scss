@@ -3,3 +3,32 @@ h1{
     background-color: blue;
 }
 
+.wrapper{
+
+width: 250px;
+height:auto;
+border: 1px solid;
+padding: 10px;
+box-shadow: 5px 10px red;
+justify-content: space-between;
+border-radius: 15px;
+margin: 10px;
+}
+.table{
+
+}
+.table_header{
+text-align: center;
+border: 2px solid rgb(0, 68, 255);
+border-radius: 5px;
+
+}
+.table_fields{
+
+}
+.wrapper__visualizer{
+    display:flex;
+    width:auto;
+    height: auto;
+    
+}
