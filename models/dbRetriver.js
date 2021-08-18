@@ -1,6 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
 const dovenv = require('dotenv').config();
-
+const path = require('path');
 
 const MONGO_URL = process.env.mongo_url;
 function linkparser(link){
