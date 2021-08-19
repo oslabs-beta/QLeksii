@@ -1,9 +1,19 @@
 import React, { FunctionComponent }  from "react";
+import Visualizer from '../components/Visualizer';
+import { Navbar } from "../components/Navbar";
+import { GraphQLSidebar } from '../components/GraphQLSidebar';'../components/GraphQLSidebar';
 
-export const VisualContainer: FunctionComponent = () => {
+type props = {
+  tables: Array<string>,
+  fields: Array<object>,
+}
+
+export const VisualContainer: FunctionComponent<props> = ({ fields, tables}) => {
   return (
   <div>
-    <h1>Hi Im Typescript and I hate people including Storm and Damien</h1>
+    <Navbar />
+    <GraphQLSidebar />
+    <Visualizer fields={fields} tables={tables}/>
   </div>
   )
 } 

@@ -14,6 +14,7 @@ export const MainContainer: FunctionComponent = () => {
   return (
   <div>
       {/* {hasURI?<VisualContainer/>: <UriMenu handleClick={clicky}/>} */}
-      {hasURI?<Visualizer fields={data.fields} tables={data.tables}/>: <UriMenu handleClick={clicky}/>}
+      {/* {hasURI?<Visualizer fields={data.fields} tables={data.tables}/>: <UriMenu handleClick={clicky}/>} */}
+      {hasURI?<VisualContainer fields={data.fields} tables={data.tables}/>: <UriMenu handleClick={clicky}/>}
   </div>
   )}
