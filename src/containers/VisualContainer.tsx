@@ -1,4 +1,4 @@
-import React, { FunctionComponent }  from "react";
+import React, { FunctionComponent, useState }  from "react";
 import Visualizer from '../components/Visualizer';
 import { Navbar } from "../components/Navbar";
 import { GraphQLSidebar } from '../components/GraphQLSidebar';'../components/GraphQLSidebar';
@@ -9,11 +9,27 @@ type props = {
 }
 
 export const VisualContainer: FunctionComponent<props> = ({ fields, tables}) => {
+  const [isMenuOpen, setMenuToOpen] = useState(false);
+  /*
+  toggleMenu() {
+    this.setState({isMenuOpen: !this.state.isMenuOpen})
+  }
+
+  const [checkedState, setCheckedState] = useState(
+    new Array(toppings.length).fill(false)
+  );
+
+
+  */
+
   return (
   <div>
     <Navbar />
+    <div className='container'>
     <GraphQLSidebar />
     <Visualizer fields={fields} tables={tables}/>
+    </div>
+    
   </div>
   )
 } 

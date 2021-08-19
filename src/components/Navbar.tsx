@@ -5,6 +5,7 @@ export const Navbar: FunctionComponent = () => {
   <div className='Navbar'>
     <ul>
       <li>Logo</li>
+      <li><button>Menu</button></li>
     </ul>
   </div>
   )
