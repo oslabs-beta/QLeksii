@@ -8,7 +8,7 @@ type props = {
   fields: Array<object>,
 }
 
-export const VisualContainer: FunctionComponent<props> = ({ fields, tables}) => {
+export const VisualContainer: FunctionComponent<props> = ({ fields, tables }) => {
   const [isMenuOpen, setMenuToOpen] = useState(false);
   /*
   toggleMenu() {

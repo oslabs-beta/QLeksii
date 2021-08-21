@@ -1,6 +1,10 @@
+html, body {
+    height: 100%;
+}
+
 h1{
     color: white;
-    background-color: blue;
+    background-color: grey;
 }
 .wrapper__Uri{
   text-align: center;
@@ -51,12 +55,13 @@ border-radius: 5px;
 .wrapper__visualizer{
     display:flex;
     width:auto;
-    //height: auto;
+    // height: auto;
+    height: 5rem;
     flex-wrap: wrap;
 }
 
 .sidebar {
-    height: 100vh;
+    
 }
 
 .sidebar-menu {
