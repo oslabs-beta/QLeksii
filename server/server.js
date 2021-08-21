@@ -3,6 +3,7 @@ const path = require('path');
 const PORT = 3333;
 const cors = require('cors');
 const dbRetriver = require('../models/dbRetriver');
+const GQLController = require('./controller/GQLController');
 const app = express();
 // const bodyParser = require('body-parser');
 
@@ -19,6 +20,12 @@ app.use(express.json());
 app.post('/', dbRetriver, (req, res) => {
   return res.status(200).json({fields:res.locals.db_data, tables: res.locals.db_tables});
 });
+
+app.post('/qltest', dbRetriver, GQLController.createGQLSchema, GQLController.pushToFile,  (req, res) => {
+  return res.status(200).json({data:res.locals.GQLSchema});
+});
+
+
 
 // global error handler
 app.use(function (err, req, res, next) {
