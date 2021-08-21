@@ -1,5 +1,6 @@
 html, body {
     height: 100%;
+    margin: 0;
 }
 
 h1{
@@ -22,11 +23,16 @@ h1{
         list-style: none;
         justify-content: space-between;
     }
+    margin-bottom:0;
+    margin-top: 0;
+    padding: 3px;
 }
 
 .container {
     display: flex;
     flex-direction: row-reverse;
+    height: 100%;
+    margin-top: 0;
 }
 
 .wrapper{
@@ -40,18 +46,14 @@ justify-content: space-between;
 border-radius: 15px;
 margin: 10px;
 }
-.table{
 
-}
 .table_header{
 text-align: center;
 border: 2px solid rgb(0, 68, 255);
 border-radius: 5px;
 
 }
-.table_fields{
 
-}
 .wrapper__visualizer{
     display:flex;
     width:auto;
@@ -60,21 +62,18 @@ border-radius: 5px;
     flex-wrap: wrap;
 }
 
-.sidebar {
-    
-}
-
 .sidebar-menu {
     width: 300px;
     height: 100%;
-    position: absolute;
+    text-align: center;
+    position: relative;
     top: 0;
-    right: 0;
+    right: 300px;
     -webkit-transform: translateX(0);
     transform: translateX(0);
     -webkit-transition: .3s ease all;
     transition: .3s ease all;
-    background: #333;
+    background: grey;
     &.open {
       -webkit-transform: translateX(300px);
       transform: translateX(300px);

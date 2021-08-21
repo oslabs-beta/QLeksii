@@ -24,9 +24,9 @@ export const VisualContainer: FunctionComponent<props> = ({ fields, tables }) =>
 
   return (
   <div>
-    <Navbar />
+    <Navbar isMenuOpen={isMenuOpen} onMenuToggle={() => setMenuToOpen(!isMenuOpen)} />
     <div className='container'>
-    <GraphQLSidebar />
+    {!isMenuOpen ? null : <GraphQLSidebar tables={tables} fields={fields} isMenuOpen={isMenuOpen} onMenuToggle={() => setMenuToOpen(!isMenuOpen)}/>}
     <Visualizer fields={fields} tables={tables}/>
     </div>
     

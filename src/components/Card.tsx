@@ -10,7 +10,6 @@ const arr =[];
 for(let el in fields){
  if(el === null) {arr.push("no documents registered yet")}
 arr.push(<div key={el} className='list'><li> {el+ " - " + fields[el]}</li></div>);
- 
 }
 
 return(
