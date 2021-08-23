@@ -17,6 +17,26 @@ schemaFactory.createSimpletype = (tableName, tableFields) => {
   str += '})});';
   return str;
 };
+schemaFactory.createSimpleQuery = (tableName) => {
+  let str = ``;
+  str += `${tableName}:[${tableName}!]!, `;
+  str += `${tableName.toLowerCase()}FindById(_id: ID!): ${tableName}, `;
+  return str;
+};
+schemaFactory.createSimpleMutation = (tableName, tableFields) => {
+  let str = ``;
+  let schema = ``;
+  for (let field in tableFields) {
+    if (el === '__v') {
+      continue;
+    }
+    schema += `${field} : ${tableFields[field]},`;
+  }
+  str += `update${tableName.toLowerCase()}ByID(_id: ID!, update:{${schema}}) : ${tableName}!, `;
+  str += `delete${tableName.toLowerCase()}ByID(_id: ID!) : ${tableName}!, `;
+  str += `add${tableName.toLowerCase()}ByID(_id: ID!, insert{${schema}}) : ${tableName}!, `;
+  return str;
+};
 
 schemaFactory.createFindAllTables = (tableName) => {
   let str = ` ${tableName.toLowerCase()} : {type:new GraphQLList(${tableName}),resolve(parent, args){return ${tableName}.find({});}}`;
@@ -51,7 +71,7 @@ schemaFactory.createUpdateByTable = (tableName) => {
 };
 
 schemaFactory.createAddByTable = (tableName) => {
-  let str = `add${tableName.toLowerCase()}ByID : {type : ${tableName},args : {insert:{type : GraphQLObjectType}},resolve(parent, args){return ${tableName}.create(args.insert)}}`;
+  let str = `add${tableName.toLowerCase()}ByID : {type : ${tableName},args : {insert:{type : GraphQLObjectType}}, resolve(parent, args){return ${tableName}.create(args.insert)}}`;
   return str;
 };
 
