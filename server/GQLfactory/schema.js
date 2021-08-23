@@ -27,10 +27,10 @@ schemaFactory.createSimpleMutation = (tableName, tableFields) => {
   let str = ``;
   let schema = ``;
   for (let field in tableFields) {
-    if (el === '__v') {
+    if (field === '__v' || field === '_id') {
       continue;
     }
-    schema += `${field} : ${tableFields[field]},`;
+    schema += `${field} : ${tableFields[field]}, `;
   }
   str += `update${tableName.toLowerCase()}ByID(_id: ID!, update:{${schema}}) : ${tableName}!, `;
   str += `delete${tableName.toLowerCase()}ByID(_id: ID!) : ${tableName}!, `;
