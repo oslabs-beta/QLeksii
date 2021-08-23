@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { render } from 'react-dom';
-const path = require('path');
+// const path = require('path');
 // const {app, BrowserWindow} = require('electron');
 import { MainContainer } from './containers/MainContainer';
 import './style/app.scss';
@@ -9,7 +9,7 @@ import './style/app.scss';
 class App extends Component {
 
   render() {
-<<<<<<< HEAD
+
     return (
       <>
       <MainContainer />
@@ -17,9 +17,9 @@ class App extends Component {
             {/* <button onClick={createBrowserWindow}>Test</button> */}
       </>
     );
-=======
+
     return <MainContainer />;
->>>>>>> development
+
   }
 }
 

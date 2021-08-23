@@ -36,13 +36,12 @@ GQLController.createGQLSchema = (req, res, next) => {
     return next(errObject);
   }
 };
-<<<<<<< HEAD
 
 
-GQLController.pushToFile=(req, res, next)=>{
-=======
+
+
 GQLController.pushToFile = (req, res, next) => {
->>>>>>> development
+
   try {
     fs.writeFile(
       'outputer.txt',

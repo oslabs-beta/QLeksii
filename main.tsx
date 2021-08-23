@@ -2,7 +2,7 @@
 const {app, BrowserWindow, ipcMain, nativeTheme} = require('electron');
 
 const path = require('path');
-require('./server/server.js');
+// require('./server/server.js');
 
 
 function createWindow(params) {
@@ -14,10 +14,10 @@ function createWindow(params) {
         icon: __dirname + '/icon.png',
         autoHideMenuBar: false,
         webPreferences:{
-            // preload: path.join(__dirname, './build/preload.js'),
+             preload: path.join(__dirname, './build/preload.js'),
             nodeIntegration: true,
             worldSafeExecuteJavaScript: true,
-            contextIsolation:false,
+            contextIsolation:true,
         }
     })
     win.loadFile('index.html');
@@ -35,12 +35,13 @@ function createWindow(params) {
     nativeTheme.themeSource = 'system'
   })
 
-
+}
 require('electron-reload')(__dirname, {
 
     electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
 })
-app.whenReady().then(createWindow)
+
+app.whenReady().then(createWindow);
 
 
 
