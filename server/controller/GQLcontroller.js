@@ -12,7 +12,9 @@ GQLController.createGQLSchema = (req, res, next) => {
     for (let i = 0; i < tables.length; i++) {
       const types = schemaFactory.createSimpletype(tables[i], fields[i]);
       Types.push(types);
-      const resolvers = schemaFactory.createFindAllTables(tables[i]);
+      const resolvers =
+        schemaFactory.createFindAllTables(tables[i]) +
+        schemaFactory.createSearchById(tables[i]);
       Resolvers += resolvers;
       const mutations =
         schemaFactory.createAddByTable(tables[i]) +

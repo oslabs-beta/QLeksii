@@ -19,11 +19,7 @@ schemaFactory.createSimpletype = (tableName, tableFields) => {
 };
 
 schemaFactory.createFindAllTables = (tableName) => {
-  let str = `${tableName.toLowerCase()} : {type:new GraphQLList(${tableName}),resolve(parent, args){return ${tableName}.find({});}}`;
-  // str += `const RootQueryFor${tableName} = new GraphQLObjectType({ name:'Query',`;
-  // str += `fields:{ '${tableName.toLowerCase()}' :{  type:new GraphQLList(${tableName}),`;
-  // str += `resolve(parent, args){ return ${tableName}.find({});}`;
-
+  let str = ` ${tableName.toLowerCase()} : {type:new GraphQLList(${tableName}),resolve(parent, args){return ${tableName}.find({});}}`;
   return str;
 };
 
@@ -39,6 +35,11 @@ schemaFactory.createSearchByField = (tableName, checkbox) => {
   });
   return str;
 };
+schemaFactory.createSearchById = (tableName) => {
+  let str = ` ${tableName.toLowerCase()}FindById : {type:new GraphQLList(${tableName}),args: {_id:{type : GraphQLString}},resolve(parent, args){return ${tableName}.findOne({_id:args._id});}}`;
+  return str;
+};
+
 schemaFactory.createDeleteByTable = (tableName) => {
   let str = `delete${tableName.toLowerCase()}ByID : {type : ${tableName}, args : {_id:{type : GraphQLString}}, resolve(parent, args){return ${tableName}.deleteOne({_id:args._id})}}`;
   return str;
@@ -57,25 +58,3 @@ schemaFactory.createAddByTable = (tableName) => {
 // console.log(schemaFactory.createResolveAllTable("User"))
 
 module.exports = schemaFactory;
-
-// const MutationFortasks = new GraphQLObjectType({
-//   name:'Mutation',
-//   fields{
-//   addtask:{
-//       type: Tasks,
-//        args:{
-//         item:{type: GraphQLString},
-//all table fields must be discribed
-//          resolve(parent, args){
-//        return Task.create({item:args.item});
-//       },
-//
-// }
-//
-//
-//
-//
-
-//     }
-//     }
-//   });
