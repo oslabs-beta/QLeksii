@@ -16,15 +16,12 @@ interface igraphQLData {
 
 export const GraphQLSidebar: FunctionComponent<props> = ({ tables, fields, isMenuOpen, onMenuToggle, data }) => {
   
-  console.log(tables);
-  console.log(fields);
-  console.log(data);
+  // console.log(tables);
+  // console.log(fields);
+  // console.log(data);
   const { Resolvers, Types, Mutations} = data;
   const typeArr = [];
   const resArr = [];
-  // for (let i = 0; i < Resolvers.length; i++) {
-  //   resArr.push(<li key={i}>{Resolvers[i]}</li>)
-  // }
   for (let i = 0; i < Types.length; i++) {
     typeArr.push(<li key={i}>{Types[i]}</li>)
   }
