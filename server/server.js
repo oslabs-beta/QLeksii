@@ -26,7 +26,6 @@ app.post(
   '/qltest',
   dbRetriver,
   GQLController.createGQLSchema,
-  GQLController.pushToFile,
   (req, res) => {
     return res.status(200).json({ data: res.locals.GQLSchema });
   }

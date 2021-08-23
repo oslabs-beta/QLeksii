@@ -7,6 +7,7 @@ h1{
     color: white;
     background-color: grey;
 }
+
 .wrapper__Uri{
   text-align: center;
   margin-top: 20%;
@@ -26,6 +27,7 @@ h1{
     margin-bottom:0;
     margin-top: 0;
     padding: 3px;
+    width: 100%;
 }
 
 .container {
@@ -33,11 +35,12 @@ h1{
     flex-direction: row-reverse;
     height: 100%;
     margin-top: 0;
+    justify-content: center;
 }
 
 .wrapper{
 
-width: 12rem;
+width: 16rem;
 // height:auto;
 border: 1px solid;
 padding: 10px;
@@ -62,9 +65,13 @@ border-radius: 5px;
     flex-wrap: wrap;
 }
 
+.sidebar-list {
+  list-style: none;
+}
+
 .sidebar-menu {
     width: 300px;
-    height: 100%;
+    max-height: 100%;
     text-align: center;
     position: relative;
     top: 0;
@@ -74,6 +81,7 @@ border-radius: 5px;
     -webkit-transition: .3s ease all;
     transition: .3s ease all;
     background: grey;
+    overflow:auto;
     &.open {
       -webkit-transform: translateX(300px);
       transform: translateX(300px);
@@ -86,4 +94,13 @@ border-radius: 5px;
         }
       }
     }
+  }
+
+  .logo {
+    width: 4rem;
+  }
+
+  .menu-button {
+    vertical-align: center;
+    width: 6rem;
   }

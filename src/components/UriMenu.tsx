@@ -1,8 +1,9 @@
 import React, { FunctionComponent, useState }  from "react";
 type props = {
   handleClick: (arg: {fields: [], tables: []}) => void
+  handleURI: (uri: string) => void
 }
-export const UriMenu: FunctionComponent<props> = ({handleClick}) => {
+export const UriMenu: FunctionComponent<props> = ({handleClick, handleURI}) => {
   const [change, setChange] = useState('');
   const handleSubmit = () => {
     fetch("http://localhost:3333/", {
@@ -14,7 +15,8 @@ export const UriMenu: FunctionComponent<props> = ({handleClick}) => {
     })
     .then(response => response.json())
     .then(data => {
-      // console.log('Success', data);
+      // console.log('Success', change);
+      handleURI(change);
       handleClick(data);
     })
     .catch(error => console.log('Error', error));
