@@ -9,8 +9,8 @@ export const Navbar: FunctionComponent<props> = ({ isMenuOpen, onMenuToggle}) =>
   return (
   <div className='Navbar'>
     <ul>
-      <li>Logo</li>
-      <li><button onClick={onMenuToggle} >Menu</button></li>
+      <li><img className='logo' src='./icon.png' /></li>
+      <li><img className='menu-button'  src='./menu_bar.png' onClick={onMenuToggle}/></li>
     </ul>
   </div>
   )
