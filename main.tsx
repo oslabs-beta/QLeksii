@@ -1,22 +1,49 @@
-const {app, BrowserWindow} = require('electron');
+const {app, BrowserWindow, ipcMain, nativeTheme} = require('electron');
 const path = require('path');
 require('./server/server.js');
 
+// require('./build/preload.js');
+// const ipc = require('electron').ipcMain;
+// let darkmode = false;
+
+// ipc.on('asynchronous-reply', function (event, arg) {
+//  if(arg){
+//      element.style.backgroundColor = "yellow";
+//  }
+// })
+
 function createWindow(params) {
+
     const win = new BrowserWindow({
         width:1200,
         heigh:800,
-        autoHideMenuBar:false,
-        backgroundColor: "white",
+        icon: __dirname + '/icon.png',
+        autoHideMenuBar: false,
         webPreferences:{
+            // preload: path.join(__dirname, './build/preload.js'),
             nodeIntegration: true,
             worldSafeExecuteJavaScript: true,
-            contextIsolation: false
+            contextIsolation:false,
         }
     })
     win.loadFile('index.html');
+
+    ipcMain.handle('dark-mode:toggle', () => {
+    if (nativeTheme.shouldUseDarkColors) {
+      nativeTheme.themeSource = 'light'
+    } else {
+      nativeTheme.themeSource = 'dark'
+    }
+    return nativeTheme.shouldUseDarkColors
+  })
+
+  ipcMain.handle('dark-mode:system', () => {
+    nativeTheme.themeSource = 'system'
+  })
 }
+
 require('electron-reload')(__dirname, {
     electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
 })
-app.whenReady().then(createWindow);
+app.whenReady().then(createWindow)
+

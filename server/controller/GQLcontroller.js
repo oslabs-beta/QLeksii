@@ -27,6 +27,8 @@ GQLController.createGQLSchema = (req, res, next) => {
     return next(errObject);
   }
 };
+
+
 GQLController.pushToFile=(req, res, next)=>{
   try {
         fs.writeFile('outputer.txt', JSON.stringify(res.locals.GQLSchema), function (err) {
