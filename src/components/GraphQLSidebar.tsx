@@ -39,6 +39,7 @@ export const GraphQLSidebar: FunctionComponent<props> = ({ tables, fields, isMen
       <button onClick={handleClick} value={'Types'} >Types</button>
       <button onClick={handleClick} value={'Mutations'} >Mutations</button>
 
+      {/* buttons for sidebar */}
       {display === 'Resolvers' ? <ul className='sidebar-list'><li>Resolvers</li><ul className='sidebar-list'>{Resolvers}</ul> </ul>: null}
       {display === 'Types' ? <ul className='sidebar-list'><li>Types</li><ul className='sidebar-list'>{typeArr}</ul> </ul>: null}
       {display === 'Mutations' ? <ul className='sidebar-list'><li>Mutations</li><ul className='sidebar-list'>{Mutations}</ul> </ul>: null}
