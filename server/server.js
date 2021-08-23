@@ -3,7 +3,7 @@ const path = require('path');
 const PORT = 3333;
 const cors = require('cors');
 const dbRetriver = require('../models/dbRetriver');
-const GQLController = require('./controller/GQLController');
+const GQLController = require('./controller/GQLcontroller');
 const app = express();
 // const bodyParser = require('body-parser');
 
@@ -12,20 +12,25 @@ const app = express();
 
 app.use(express.json());
 
-
 // app.post('/', (req, res) => {
 //   res.status(200).json(req.body);
 // })
 
 app.post('/', dbRetriver, (req, res) => {
-  return res.status(200).json({fields:res.locals.db_data, tables: res.locals.db_tables});
+  return res
+    .status(200)
+    .json({ fields: res.locals.db_data, tables: res.locals.db_tables });
 });
 
-app.post('/qltest', dbRetriver, GQLController.createGQLSchema, GQLController.pushToFile,  (req, res) => {
-  return res.status(200).json({data:res.locals.GQLSchema});
-});
-
-
+app.post(
+  '/qltest',
+  dbRetriver,
+  GQLController.createGQLSchema,
+  GQLController.pushToFile,
+  (req, res) => {
+    return res.status(200).json({ data: res.locals.GQLSchema });
+  }
+);
 
 // global error handler
 app.use(function (err, req, res, next) {
@@ -41,4 +46,4 @@ app.use(function (err, req, res, next) {
 
 app.listen(PORT, () => {
   console.log(`Listening on PORT ${PORT}`);
-})
+});
