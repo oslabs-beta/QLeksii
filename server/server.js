@@ -21,7 +21,7 @@ app.post('/', dbRetriver, (req, res) => {
   return res.status(200).json({fields:res.locals.db_data, tables: res.locals.db_tables});
 });
 
-app.post('/qltest', dbRetriver, GQLController.createGQLSchema, GQLController.pushToFile,  (req, res) => {
+app.post('/qltest', dbRetriver, GQLController.createGQLSchema, (req, res) => {
   return res.status(200).json({data:res.locals.GQLSchema});
 });
 

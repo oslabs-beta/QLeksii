@@ -6,9 +6,10 @@ import { GraphQLSidebar } from '../components/GraphQLSidebar';'../components/Gra
 type props = {
   tables: Array<string>,
   fields: Array<object>,
+  uri: string
 }
 
-export const VisualContainer: FunctionComponent<props> = ({ fields, tables }) => {
+export const VisualContainer: FunctionComponent<props> = ({ fields, tables, uri}) => {
   const [isMenuOpen, setMenuToOpen] = useState(false);
   /*
   toggleMenu() {
@@ -22,11 +23,26 @@ export const VisualContainer: FunctionComponent<props> = ({ fields, tables }) =>
 
   */
 
+  if(isMenuOpen){
+    fetch("http://localhost:3333/qltest", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({URI: uri}),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success', data);
+    })
+    .catch(error => console.log('Error', error));
+  }
+
   return (
   <div>
     <Navbar isMenuOpen={isMenuOpen} onMenuToggle={() => setMenuToOpen(!isMenuOpen)} />
     <div className='container'>
-    {!isMenuOpen ? null : <GraphQLSidebar tables={tables} fields={fields} isMenuOpen={isMenuOpen} onMenuToggle={() => setMenuToOpen(!isMenuOpen)}/>}
+    {!isMenuOpen ? null : <GraphQLSidebar uri={uri} tables={tables} fields={fields} isMenuOpen={isMenuOpen} onMenuToggle={() => setMenuToOpen(!isMenuOpen)}/>}
     <Visualizer fields={fields} tables={tables}/>
     </div>
     
