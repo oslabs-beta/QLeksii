@@ -2,15 +2,6 @@ const {app, BrowserWindow, ipcMain, nativeTheme} = require('electron');
 const path = require('path');
 require('./server/server.js');
 
-// require('./build/preload.js');
-// const ipc = require('electron').ipcMain;
-// let darkmode = false;
-
-// ipc.on('asynchronous-reply', function (event, arg) {
-//  if(arg){
-//      element.style.backgroundColor = "yellow";
-//  }
-// })
 
 function createWindow(params) {
 
