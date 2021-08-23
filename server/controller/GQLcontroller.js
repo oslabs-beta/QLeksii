@@ -9,21 +9,29 @@ GQLController.createGQLSchema = (req, res, next) => {
     const Types = [];
     let Resolvers = `const RootQuery = new GraphQLObjectType({name:'Query', fields:{ `;
     let Mutations = `const Mutation = new GraphQLObjectType({name:'Mutation', fields:{`;
+    let Query = `type Query {`;
+    let Mutation = `type Mutation {`;
     for (let i = 0; i < tables.length; i++) {
       const types = schemaFactory.createSimpletype(tables[i], fields[i]);
       Types.push(types);
-      const resolvers = schemaFactory.createFindAllTables(tables[i]);
+      const resolvers =
+        schemaFactory.createFindAllTables(tables[i]) +
+        schemaFactory.createSearchById(tables[i]);
       Resolvers += resolvers;
       const mutations =
         schemaFactory.createAddByTable(tables[i]) +
         schemaFactory.createUpdateByTable(tables[i]) +
         schemaFactory.createDeleteByTable(tables[i]);
       Mutations += mutations;
+      Query += schemaFactory.createSimpleQuery(tables[i]);
+      Mutation += schemaFactory.createSimpleMutation(tables[i], fields[i]);
     }
     const tail = `} });`;
     Resolvers += tail;
     Mutations += tail;
-    res.locals.GQLSchema = { Types, Resolvers, Mutations };
+    Query += `}`;
+    Mutation += '}';
+    res.locals.GQLSchema = { Types, Resolvers, Mutations, Query, Mutation };
     return next();
   } catch (err) {
     const errObject = {
