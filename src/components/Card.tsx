@@ -9,8 +9,7 @@ const Card: FunctionComponent <CardsProps> = ({ table, fields }) =>{
 const arr =[];
 for(let el in fields){
  if(el === null) {arr.push("no documents registered yet")}
-arr.push(<div className='list'><li> {el+ " - " + fields[el]}</li></div>);
- 
+        arr.push(el !== '__v' ? <div key={el} className='list'><li> {  el+ " - " + fields[el]}</li></div> : null);
 }
 
 return(

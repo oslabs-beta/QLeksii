@@ -1,8 +1,16 @@
+<<<<<<< HEAD
+=======
+html, body {
+    height: 100%;
+    margin: 0;
+}
+>>>>>>> development
 
 h1{
-    color: aqua;
-    background-color: blue;
+    color: white;
+    background-color: grey;
 }
+
 .wrapper__Uri{
   text-align: center;
   margin-top: 20%;
@@ -10,10 +18,33 @@ h1{
 .Input__uri{
     width: 400px;
 }
+
+.navbar {
+    background-color: aqua;
+    ul {
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        justify-content: space-between;
+    }
+    margin-bottom:0;
+    margin-top: 0;
+    padding: 3px;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: row-reverse;
+    height: 100%;
+    margin-top: 0;
+    justify-content: center;
+}
+
 .wrapper{
 
-width: 250px;
-height:auto;
+width: 16rem;
+// height:auto;
 border: 1px solid;
 padding: 10px;
 box-shadow: 5px 10px red;
@@ -21,21 +52,18 @@ justify-content: space-between;
 border-radius: 15px;
 margin: 10px;
 }
-.table{
 
-}
 .table_header{
 text-align: center;
 border: 2px solid rgb(0, 68, 255);
 border-radius: 5px;
 
 }
-.table_fields{
 
-}
 .wrapper__visualizer{
     display:flex;
     width:auto;
+<<<<<<< HEAD
     height: auto;
     
 }
@@ -121,4 +149,49 @@ border-radius: 5px;
   
   @media (prefers-color-scheme: light) {
     body { background: #ddd; color: black; }
+=======
+    // height: auto;
+    height: 5rem;
+    flex-wrap: wrap;
+}
+
+.sidebar-list {
+  list-style: none;
+}
+
+.sidebar-menu {
+    width: 300px;
+    max-height: 100%;
+    text-align: center;
+    position: relative;
+    top: 0;
+    right: 300px;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    -webkit-transition: .3s ease all;
+    transition: .3s ease all;
+    background: grey;
+    overflow:auto;
+    &.open {
+      -webkit-transform: translateX(300px);
+      transform: translateX(300px);
+    }
+    .menu {
+      > li {
+        > a {
+          padding: 15px 20px;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .logo {
+    width: 4rem;
+  }
+
+  .menu-button {
+    vertical-align: center;
+    width: 6rem;
+>>>>>>> development
   }

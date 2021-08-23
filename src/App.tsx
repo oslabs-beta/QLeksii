@@ -1,4 +1,4 @@
-import React, { Component }  from "react";
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { render } from 'react-dom';
 const path = require('path');
@@ -6,10 +6,10 @@ const path = require('path');
 import { MainContainer } from './containers/MainContainer';
 import './style/app.scss';
 
-
 class App extends Component {
 
   render() {
+<<<<<<< HEAD
     return (
       <>
       <MainContainer />
@@ -17,8 +17,10 @@ class App extends Component {
             {/* <button onClick={createBrowserWindow}>Test</button> */}
       </>
     );
+=======
+    return <MainContainer />;
+>>>>>>> development
   }
 }
-
 
 export default App;

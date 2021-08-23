@@ -1,9 +1,12 @@
+
 const {app, BrowserWindow, ipcMain, nativeTheme} = require('electron');
+
 const path = require('path');
 require('./server/server.js');
 
 
 function createWindow(params) {
+
 
     const win = new BrowserWindow({
         width:1200,
@@ -31,10 +34,14 @@ function createWindow(params) {
   ipcMain.handle('dark-mode:system', () => {
     nativeTheme.themeSource = 'system'
   })
-}
+
 
 require('electron-reload')(__dirname, {
+
     electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
 })
 app.whenReady().then(createWindow)
+
+
+
 
