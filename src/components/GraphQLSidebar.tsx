@@ -6,15 +6,17 @@ type props = {
   tables: Array<string>,
   fields: Array<object>,
   data: igraphQLData
+  Query: string,
+  Mutation: string
 }
 
 interface igraphQLData {
   Resolvers: string,
   Types: string[],
-  Mutations: string 
+  Mutations: string, 
 }
 
-export const GraphQLSidebar: FunctionComponent<props> = ({ tables, fields, isMenuOpen, onMenuToggle, data }) => {
+export const GraphQLSidebar: FunctionComponent<props> = ({ tables, fields, isMenuOpen, onMenuToggle, data, Mutation, Query }) => {
   const [display, setDisplay] = useState('');
   // console.log(tables);
   // console.log(fields);
