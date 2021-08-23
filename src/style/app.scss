@@ -7,6 +7,7 @@ h1{
     color: white;
     background-color: grey;
 }
+
 .wrapper__Uri{
   text-align: center;
   margin-top: 20%;
@@ -26,6 +27,7 @@ h1{
     margin-bottom:0;
     margin-top: 0;
     padding: 3px;
+    width: 100%;
 }
 
 .container {
@@ -33,11 +35,12 @@ h1{
     flex-direction: row-reverse;
     height: 100%;
     margin-top: 0;
+    justify-content: center;
 }
 
 .wrapper{
 
-width: 12rem;
+width: 16rem;
 // height:auto;
 border: 1px solid;
 padding: 10px;
@@ -60,6 +63,10 @@ border-radius: 5px;
     // height: auto;
     height: 5rem;
     flex-wrap: wrap;
+}
+
+.sidebar-list {
+  list-style: none;
 }
 
 .sidebar-menu {
