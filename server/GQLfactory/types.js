@@ -5,7 +5,7 @@ const type = (str) => {
    case 'array':
       return 'GraphQLList';
     case 'object':
-      return 'GraphQLObjectType';
+      return 'GraphQLString';
     case 'string':
       return 'GraphQLString';
     case 'number':
