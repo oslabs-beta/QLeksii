@@ -1,4 +1,4 @@
-import React, { FunctionComponent }  from "react";
+import React, { FunctionComponent, useState }  from "react";
 
 type props = {
   onMenuToggle: () => void;
@@ -6,33 +6,45 @@ type props = {
   tables: Array<string>,
   fields: Array<object>,
   data: igraphQLData
+  Query: string,
+  Mutation: string
 }
 
 interface igraphQLData {
   Resolvers: string,
   Types: string[],
-  Mutations: string 
+  Mutations: string, 
 }
 
-export const GraphQLSidebar: FunctionComponent<props> = ({ tables, fields, isMenuOpen, onMenuToggle, data }) => {
-  
-  console.log(tables);
-  console.log(fields);
-  console.log(data);
+export const GraphQLSidebar: FunctionComponent<props> = ({ tables, fields, isMenuOpen, onMenuToggle, data, Mutation, Query }) => {
+  const [display, setDisplay] = useState('');
+  // console.log(tables);
+  // console.log(fields);
+  // console.log(data);
   const { Resolvers, Types, Mutations} = data;
   const typeArr = [];
   const resArr = [];
-  // for (let i = 0; i < Resolvers.length; i++) {
-  //   resArr.push(<li key={i}>{Resolvers[i]}</li>)
-  // }
   for (let i = 0; i < Types.length; i++) {
     typeArr.push(<li key={i}>{Types[i]}</li>)
   }
 
+  function handleClick(event: any){
+    console.log(event);
+    setDisplay(event.target.value);
+  }
+
   return (
     <div className={`sidebar-menu ${isMenuOpen === true ? 'open' : ''}` }>
-      <h1>Sidebar goes here</h1>
-      <ul className='sidebar-list'>
+      <button onClick={handleClick} value={'Resolvers'} >Resolvers</button>
+      <button onClick={handleClick} value={'Types'} >Types</button>
+      <button onClick={handleClick} value={'Mutations'} >Mutations</button>
+
+      {/* buttons for sidebar */}
+      {display === 'Resolvers' ? <ul className='sidebar-list'><li>Resolvers</li><ul className='sidebar-list'>{Resolvers}</ul> </ul>: null}
+      {display === 'Types' ? <ul className='sidebar-list'><li>Types</li><ul className='sidebar-list'>{typeArr}</ul> </ul>: null}
+      {display === 'Mutations' ? <ul className='sidebar-list'><li>Mutations</li><ul className='sidebar-list'>{Mutations}</ul> </ul>: null}
+
+      {/* <ul className='sidebar-list'>
         <li>Resolvers</li>
         <ul className='sidebar-list'>
         {Resolvers}
@@ -49,7 +61,7 @@ export const GraphQLSidebar: FunctionComponent<props> = ({ tables, fields, isMen
         <ul className='sidebar-list'>
         {Mutations}
         </ul>
-      </ul>
+      </ul> */}
     </div>
   )
 }
