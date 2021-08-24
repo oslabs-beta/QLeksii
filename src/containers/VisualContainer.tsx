@@ -50,6 +50,7 @@ export const VisualContainer: FunctionComponent<props> = ({ fields, tables, uri}
   const { data } = sideBarData;
 
   return (
+  //changed to visualcontainer class
   <div className='VisualContainer'>
     <Navbar isMenuOpen={isMenuOpen} onMenuToggle={() => setMenuToOpen(!isMenuOpen)} />
     <div className='container'>
