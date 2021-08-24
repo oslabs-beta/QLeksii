@@ -36,10 +36,10 @@ function createWindow(params) {
   })
 
 }
-require('electron-reload')(__dirname, {
+// require('electron-reload')(__dirname, {
 
-    electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
-})
+//     electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
+// })
 
 app.whenReady().then(createWindow);
 
