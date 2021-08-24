@@ -9,8 +9,8 @@ function createWindow(params) {
 
 
     const win = new BrowserWindow({
-        width:1200,
-        heigh:800,
+        width: 1200,
+        height: 800,
         icon: __dirname + '/icon.png',
         autoHideMenuBar: false,
         webPreferences:{
