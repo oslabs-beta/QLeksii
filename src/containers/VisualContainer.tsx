@@ -2,6 +2,7 @@ import React, { FunctionComponent, useState, useEffect }  from "react";
 import Visualizer from '../components/Visualizer';
 import { Navbar } from "../components/Navbar";
 import { GraphQLSidebar } from '../components/GraphQLSidebar';'../components/GraphQLSidebar';
+import { CodeMirror } from '../components/CodeMirror';
 
 type props = {
   tables: Array<string>,
