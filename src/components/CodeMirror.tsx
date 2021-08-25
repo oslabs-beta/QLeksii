@@ -1,11 +1,15 @@
 import React, { FunctionComponent } from 'react';
 import { UnControlled } from 'react-codemirror2';
 
-export const CodeMirror: FunctionComponent = () => {
+type props = {
+  value: string
+}
+
+export const CodeMirror: FunctionComponent<props> = ({ value }) => {
   return (
     <UnControlled
       className='codeMirror'
-      value='state goes here'
+      value={value}
       options={{
         mode: 'javascript',
         theme: 'material',
