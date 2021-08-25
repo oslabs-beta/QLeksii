@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState }  from "react";
+import React, { FunctionComponent, useState, useEffect }  from "react";
 import Visualizer from '../components/Visualizer';
 import { Navbar } from "../components/Navbar";
 import { GraphQLSidebar } from '../components/GraphQLSidebar';'../components/GraphQLSidebar';
@@ -6,10 +6,17 @@ import { GraphQLSidebar } from '../components/GraphQLSidebar';'../components/Gra
 type props = {
   tables: Array<string>,
   fields: Array<object>,
+  uri: string
 }
 
-export const VisualContainer: FunctionComponent<props> = ({ fields, tables }) => {
+interface igraphQLData {
+  Resolvers: string[],
+  Types: string[]
+}
+
+export const VisualContainer: FunctionComponent<props> = ({ fields, tables, uri}) => {
   const [isMenuOpen, setMenuToOpen] = useState(false);
+  const [sideBarData, setSideBarData] = useState<any>({});
   /*
   toggleMenu() {
     this.setState({isMenuOpen: !this.state.isMenuOpen})
@@ -22,11 +29,32 @@ export const VisualContainer: FunctionComponent<props> = ({ fields, tables }) =>
 
   */
 
+  useEffect(() => {
+
+    fetch("http://localhost:3333/qltest", {
+    method: 'POST',
+     headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({URI: uri}),
+    })
+    .then(response => response.json())
+    .then(data => {
+      // console.log('Success', data);
+      setSideBarData(data);
+    })
+    .catch(error => console.log('Error', error));
+
+  }, []);
+
+  const { data } = sideBarData;
+
   return (
-  <div>
+  //changed to visualcontainer class
+  <div className='VisualContainer'>
     <Navbar isMenuOpen={isMenuOpen} onMenuToggle={() => setMenuToOpen(!isMenuOpen)} />
     <div className='container'>
-    {!isMenuOpen ? null : <GraphQLSidebar tables={tables} fields={fields} isMenuOpen={isMenuOpen} onMenuToggle={() => setMenuToOpen(!isMenuOpen)}/>}
+    {!isMenuOpen ? null : <GraphQLSidebar data={data} tables={tables} fields={fields} isMenuOpen={isMenuOpen} onMenuToggle={() => setMenuToOpen(!isMenuOpen)}/>}
     <Visualizer fields={fields} tables={tables}/>
     </div>
     
