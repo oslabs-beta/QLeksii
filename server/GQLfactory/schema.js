@@ -39,7 +39,7 @@ schemaFactory.createSimpleMutation = (tableName, tableFields) => {
 };
 
 schemaFactory.createFindAllTables = (tableName) => {
-  let str = ` ${tableName.toLowerCase()} : {type:new GraphQLList(${tableName}),resolve(parent, args){return ${tableName}.find({});}}`;
+  let str = ` ${tableName.toLowerCase()} : {type:new GraphQLList(${tableName}),resolve(parent, args){return ${tableName}.find({});}},`;
   return str;
 };
 
@@ -50,28 +50,56 @@ schemaFactory.createSearchByField = (tableName, checkbox) => {
     str += checkbox[field]
       ? `${tableName.toLowerCase()}By${field} : {type : ${tableName}, args : {${field}:{type : ${type(
           checkbox[field]
-        )}}}, resolve(parent, args){return ${tableName}.findOne({${field}:args.${field}})}}`
+        )}}}, resolve(parent, args){return ${tableName}.findOne({${field}:args.${field}})}},`
       : ``;
   });
   return str;
 };
 schemaFactory.createSearchById = (tableName) => {
-  let str = ` ${tableName.toLowerCase()}FindById : {type:new GraphQLList(${tableName}),args: {_id:{type : GraphQLString}},resolve(parent, args){return ${tableName}.findOne({_id:args._id});}}`;
+  let str = ` ${tableName.toLowerCase()}FindById : {
+    type: ${tableName},
+    args: {_id:{type : GraphQLString}},
+    resolve(parent, args){
+      return ${tableName}.findOne({_id:args._id});
+    }
+  },
+  `;
   return str;
 };
 
 schemaFactory.createDeleteByTable = (tableName) => {
-  let str = `delete${tableName.toLowerCase()}ByID : {type : ${tableName}, args : {_id:{type : GraphQLString}}, resolve(parent, args){return ${tableName}.deleteOne({_id:args._id})}}`;
+  let str = `delete${tableName.toLowerCase()}ByID : {
+    type : ${tableName},
+    args : {_id:{type : GraphQLString}},
+    resolve(parent, args){
+      return ${tableName}.deleteOne({_id:args._id});
+    }
+  },
+  `;
   return str;
 };
 
 schemaFactory.createUpdateByTable = (tableName) => {
-  let str = `update${tableName.toLowerCase()}ByID : {type : ${tableName},args : {_id:{type : GraphQLString}, update:{type : GraphQLObjectType}},resolve(parent, args){return ${tableName}.updateOne({_id:args._id}, args.update)}}`;
+  let str = `update${tableName.toLowerCase()}ByID :{
+    type : ${tableName},
+    args : {_id:{type : GraphQLString}, update:{type : GraphQLObjectType}},
+    resolve(parent, args){
+      return ${tableName}.updateOne({_id:args._id}, args.update);
+    }
+  },
+  `;
   return str;
 };
 
 schemaFactory.createAddByTable = (tableName) => {
-  let str = `add${tableName.toLowerCase()}ByID : {type : ${tableName},args : {insert:{type : GraphQLObjectType}}, resolve(parent, args){return ${tableName}.create(args.insert)}}`;
+  let str = `add${tableName.toLowerCase()}ByID :{
+    type : ${tableName},
+    args : {insert:{type : GraphQLObjectType}},
+    resolve(parent, args){
+       return ${tableName}.create(args.insert);
+      }
+    },
+    `;
   return str;
 };
 
