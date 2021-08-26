@@ -1,31 +1,36 @@
 {
   "name": "qleksii",
   "version": "1.0.0",
-  "description": "",
+  "description": "Electron GraphQL tool for delivering you all your GraphQL needs",
   "main": "main.tsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron .",
+    "start": "electron-forge start",
     "pre": "node ./server/server.js",
-    "watch": "webpack --config webpack.config.ts --watch"
+    "watch": "webpack --config webpack.config.ts --watch",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "keywords": [],
-  "author": "",
+  "author": "Damien, Storm, Hasan, Oleksii, Dennis",
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
     "body-parser": "^1.19.0",
+    "codemirror": "^5.62.3",
     "cors": "^2.8.5",
     "css-loader": "^6.2.0",
     "dotenv": "^10.0.0",
-    "electron": "^13.1.9",
+    "electron-builder": "^22.11.7",
+    "electron-squirrel-startup": "^1.0.0",
     "express": "^4.17.1",
     "express-graphql": "^0.12.0",
     "graphql": "^15.5.1",
     "mongodb": "^4.1.0",
     "react": "^17.0.2",
+    "react-codemirror2": "^7.2.1",
     "react-dom": "^17.0.2",
     "sass": "^1.37.5",
     "sass-loader": "^12.1.0",
@@ -36,6 +41,11 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.15.0",
+    "@electron-forge/cli": "^6.0.0-beta.59",
+    "@electron-forge/maker-deb": "^6.0.0-beta.59",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.59",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.59",
+    "@electron-forge/maker-zip": "^6.0.0-beta.59",
     "@types/react": "^17.0.18",
     "@types/react-dom": "^17.0.9",
     "@types/webpack-dev-server": "^3.11.5",
@@ -44,9 +54,37 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "electron": "^13.2.2",
     "electron-reload": "^2.0.0-alpha.1",
     "ts-node": "^10.2.0",
     "typescript": "^4.3.5",
     "webpack-dev-server": "^3.11.2"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "qleksii"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
   }
 }

@@ -1,5 +1,6 @@
 import path from "path";
 import webpack from "webpack";
+import CodeMirror from 'react-codemirror2';
 
 const config: webpack.Configuration = {
   mode: 'development',
