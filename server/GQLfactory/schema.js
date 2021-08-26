@@ -7,19 +7,26 @@ const schemaFactory = {};
 schemaFactory.createSimpletype = (tableName, tableFields) => {
   let str = '';
   // if(tableFields===null) return 'no fields were identified'
-  str += `const ${tableName} = new GraphQLObjectType({ name:'${tableName}', fields:() =>({`;
+  str += `const ${tableName} = new GraphQLObjectType({
+    name:'${tableName}', 
+    fields:() =>({
+      `;
   for (let el in tableFields) {
     if (el === '__v') {
       continue;
     }
-    str += el + ':{type:' + type(tableFields[el]) + '}, ';
+    str +=
+      el +
+      `:{type: ${type(tableFields[el])} },
+    `;
   }
-  str += '})});';
+  str += `})
+});`;
   return str;
 };
 schemaFactory.createSimpleQuery = (tableName) => {
   let str = ``;
-  str += `${tableName}:[${tableName}!]!, `;
+  str += `${tableName}:[${tableName}!]!,`;
   str += `${tableName.toLowerCase()}FindById(_id: ID!): ${tableName}, `;
   return str;
 };
@@ -39,7 +46,13 @@ schemaFactory.createSimpleMutation = (tableName, tableFields) => {
 };
 
 schemaFactory.createFindAllTables = (tableName) => {
-  let str = ` ${tableName.toLowerCase()} : {type:new GraphQLList(${tableName}),resolve(parent, args){return ${tableName}.find({});}},`;
+  let str = ` ${tableName.toLowerCase()} : {
+    type:new GraphQLList(${tableName}),
+    resolve(parent, args){
+      return ${tableName}.find({});
+    }
+  },
+  `;
   return str;
 };
 
