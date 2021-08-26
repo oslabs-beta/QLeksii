@@ -32,9 +32,6 @@ export const GraphQLSidebar: FunctionComponent<props> = ({ tables, fields, isMen
     
 `
   }
-
-  console.log(type);
-
   function handleClick(event: any){
     setDisplay(event.target.value);
   }
