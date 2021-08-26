@@ -77,8 +77,12 @@ input:checked + .slider:after {
 
 @media (prefers-color-scheme: dark) {
   body { background: #333; color: white; }
+  .codeMirror {background: #333; color: white}
+  .CodeMirror-linenumbers {background: #333; color: white}
 }
   
 @media (prefers-color-scheme: light) {
   body { background: #ddd; color: black; }
+  .codeMirror { background: #ddd; color: #000; }
+  .CodeMirror-linenumbers { background: #ddd; color: white; }
 }
