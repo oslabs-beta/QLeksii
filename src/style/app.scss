@@ -11,7 +11,7 @@ html, body {
 
 h1 {
   color: white;
-  background-color: grey;
+  background-color: $primary-light;
 }
 
 .wrapper__Uri {
@@ -89,14 +89,16 @@ h1 {
 .sidebar-menu {
   width: 25rem;
   text-align: center;
-  overflow:auto;
+  height: 100%;
 }
 
 .sidebar-list {
   list-style: none;
 }
 
-
-
+.codeMirror {
+  height: 100%;
+  width: 100%;
+}
 
 
