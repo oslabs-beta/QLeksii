@@ -2,6 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="Content-Security-Policy"  />
+  <meta http-equiv="Content-Security-Policy" content="script-src 'sha256-pQY0fuQAnnVQH5nQfjo80rzGkQzeN3JeAtAJ+1KcD4k=' 'self' blob:">
 </head>
 <body>
   <div class="dark_mode">
@@ -13,6 +14,7 @@
   </div>
     <div id="root">
   </div>
+  <script>window.global = window;</script>
   <script src="./build/bundle.js"></script>
   <script src="./build/darkmode.js"></script>
 
