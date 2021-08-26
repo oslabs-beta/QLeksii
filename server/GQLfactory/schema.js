@@ -26,8 +26,10 @@ schemaFactory.createSimpletype = (tableName, tableFields) => {
 };
 schemaFactory.createSimpleQuery = (tableName) => {
   let str = ``;
-  str += `${tableName}:[${tableName}!]!,`;
-  str += `${tableName.toLowerCase()}FindById(_id: ID!): ${tableName}, `;
+  str += `${tableName}:[${tableName}!]!,
+  `;
+  str += `${tableName.toLowerCase()}FindById(_id: ID!): ${tableName},
+  `;
   return str;
 };
 schemaFactory.createSimpleMutation = (tableName, tableFields) => {
@@ -37,11 +39,15 @@ schemaFactory.createSimpleMutation = (tableName, tableFields) => {
     if (field === '__v' || field === '_id') {
       continue;
     }
-    schema += `${field} : ${tableFields[field]}, `;
+    schema += `${field} : ${tableFields[field]},
+    `;
   }
-  str += `update${tableName.toLowerCase()}ByID(_id: ID!, update:{${schema}}) : ${tableName}!, `;
-  str += `delete${tableName.toLowerCase()}ByID(_id: ID!) : ${tableName}!, `;
-  str += `add${tableName.toLowerCase()}ByID(_id: ID!, insert{${schema}}) : ${tableName}!, `;
+  str += `update${tableName.toLowerCase()}ByID(_id: ID!, update:{${schema}}) : ${tableName}!,
+  `;
+  str += `delete${tableName.toLowerCase()}ByID(_id: ID!) : ${tableName}!,
+  `;
+  str += `add${tableName.toLowerCase()}ByID(_id: ID!, insert{${schema}}) : ${tableName}!,
+  `;
   return str;
 };
 
