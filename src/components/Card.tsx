@@ -2,7 +2,7 @@ import React, { FunctionComponent }  from "react";
 
 type CardsProps = {
     table: string,
-    fields: object
+    fields: any
 }
 
 const Card: FunctionComponent <CardsProps> = ({ table, fields }) =>{

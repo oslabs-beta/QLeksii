@@ -50,5 +50,5 @@ async function main(req, res, next){
     }
 }
 
-module.exports = main;
+module.exports = {main, linkparser, listDatabases, gimeData};
 
