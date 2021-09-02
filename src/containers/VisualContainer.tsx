@@ -14,7 +14,7 @@ interface igraphQLData {
   Types: string[]
 }
 
-export const VisualContainer: FunctionComponent<props> = ({ fields, tables, uri}) => {
+export const VisualContainer: FunctionComponent<props> = ({ fields, tables, uri }) => {
   const [isMenuOpen, setMenuToOpen] = useState(false);
   const [sideBarData, setSideBarData] = useState<any>({});
   /*
