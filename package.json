@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
+    "deb": "electron --trace-warnings",
     "pre": "node ./server/server.js",
     "watch": "webpack --config webpack.config.ts --watch",
     "package": "electron-forge package",

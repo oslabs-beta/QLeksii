@@ -129,7 +129,7 @@ const createSimpletype = (tableName, tableFields) => {
 
 const end = ` 
 const newRunner = new GraphQLSchema({query:RootQuery});
-app.get('/graphql', graphqlHTTP({
+app.use('/graphql', graphqlHTTP({
   schema: newRunner,
   graphiql: true,
 }));`;
