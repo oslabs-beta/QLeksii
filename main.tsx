@@ -1,6 +1,6 @@
-
 const {app, BrowserWindow, ipcMain, nativeTheme} = require('electron');
 const path = require('path');
+const fs = require('fs');
 // require('./server/server.js');
 var exec = require('child_process').exec;
 
@@ -61,18 +61,31 @@ function createWindow(params) {
   
    child.on('close', function(event){
      event.preventDefault();
-     //we need to write on close event to kill port 3200 so we dont have it running always 
+      //we need to write on close event to kill port 3200 so we dont have it running always 
      // we need to clear that server file (for some reason it doesnt being overwritten by fs) 
        var cmd3 = 'npx kill-port 3200';
        exec(cmd3, function(error, stdout, stderr) { 
 
        });
-
-    // console.log("done")
-   
+      // console.log("done")
         child.hide();
     });
+
+    win.on('closed', function(event){
+      // event.preventDefault();
+      //we need to write on close event to kill port 3200 so we dont have it running always 
+      // we need to clear that server file (for some reason it doesnt being overwritten by fs) 
+       fs.unlink('./remoteserver/server.js', function (err) {
+         if (err) {
+           console.error(err);
+         } else {
+           console.log("File removed:", './remoteserver/server.js');
+         }
+       });
+     });
 }
+
+
 // require('electron-reload')(__dirname, {
 
 //     electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
