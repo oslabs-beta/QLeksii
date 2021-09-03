@@ -3,7 +3,7 @@ const console = require('console');
 const MongoClient = require('mongodb').MongoClient;
 const schemaFactory = require('../server/GQLfactory/schema.js');
 const type = require('../server/GQLfactory/types.js');
-fs = require('fs');
+const fs = require('fs');
 let bigAssResult ='';
 
 function linkparser(link){
