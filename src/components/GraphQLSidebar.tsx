@@ -1,5 +1,8 @@
 import React, { FunctionComponent, useState }  from "react";
-
+var CodeMirror = require('react-codemirror');
+require('codemirror/mode/javascript/javascript');
+require('codemirror/mode/xml/xml');
+require('codemirror/mode/markdown/markdown');
 type props = {
   onMenuToggle: () => void;
   isMenuOpen: boolean,
@@ -65,6 +68,11 @@ export const GraphQLSidebar: FunctionComponent<props> = ({ tables, fields, isMen
         {Mutations}
         </ul>
       </ul> */}
+
+      <CodeMirror value={Mutation} options={{
+       mode: 'javascript',
+      lineNumbers: true,
+    }} />
     </div>
   )
 }

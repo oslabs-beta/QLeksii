@@ -20,6 +20,7 @@ export const UriMenu: FunctionComponent<props> = ({handleClick, handleURI}) => {
       handleClick(data);
     })
     .catch(error => console.log('Error', error));
+   
   }
   return(<div className="wrapper__Uri">
   <input className="Input__uri" type='text' onChange={(e)=>{setChange(e.target.value)}} value={change} placeholder='Write Uri Here'/>

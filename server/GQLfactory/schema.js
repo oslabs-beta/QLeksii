@@ -7,7 +7,7 @@ const schemaFactory = {};
 schemaFactory.createSimpletype = (tableName, tableFields) => {
   let str = '';
   // if(tableFields===null) return 'no fields were identified'
-  str += `const ${tableName} = new GraphQLObjectType({ name:'${tableName}', fields:() =>({`;
+  str += `const ${tableName} = new GraphQLObjectType({  name:'${tableName}', fields:() =>({`;
   for (let el in tableFields) {
     if (el === '__v') {
       continue;

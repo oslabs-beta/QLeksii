@@ -4,7 +4,12 @@ const PORT = 3333;
 const cors = require('cors');
 const dbRetriver = require('../models/dbRetriver');
 const GQLController = require('./controller/GQLcontroller');
+const injection = require('../models/injection.js')
+
+
+
 const app = express();
+app.use(cors());
 // const bodyParser = require('body-parser');
 
 // parse application/json
@@ -22,9 +27,13 @@ app.post('/', dbRetriver, (req, res) => {
     .json({ fields: res.locals.db_data, tables: res.locals.db_tables });
 });
 
+app.post('/injection', injection, (req, res) => {
+  return res.status(200)
+});
+
 app.post(
   '/qltest',
-  dbRetriver,
+  dbRetriver,  
   GQLController.createGQLSchema,
   (req, res) => {
     return res.status(200).json({ data: res.locals.GQLSchema });

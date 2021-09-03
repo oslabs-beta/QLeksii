@@ -126,6 +126,10 @@ border-radius: 5px;
 
   @media (prefers-color-scheme: dark) {
     body { background: #333; color: white; }
+    .logo {
+      background-image: url("/icon_dark.png");
+
+    }
   }
   
   @media (prefers-color-scheme: light) {
@@ -278,7 +282,8 @@ border-radius: 5px;
   }
 
   .logo {
-    width: 4rem;
+    background-image: url("/icon.png");
+
   }
 
   .menu-button {

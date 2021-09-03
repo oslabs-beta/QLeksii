@@ -18,7 +18,10 @@ return(
         <h2 className="table_header">{table}</h2>
         <div className="table_fields">{arr}</div>
     </div>
+    
     </div>	
+
+
 );
 }
 
