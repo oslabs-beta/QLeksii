@@ -2,10 +2,9 @@ import React, { FunctionComponent }  from "react";
 
 type props = {
   onMenuToggle: () => void;
-  isMenuOpen: boolean;
 }
 
-export const Navbar: FunctionComponent<props> = ({ isMenuOpen, onMenuToggle}) => {
+export const Navbar: FunctionComponent<props> = ({ onMenuToggle}) => {
   return (
   <div className='Navbar'>
     <ul>
