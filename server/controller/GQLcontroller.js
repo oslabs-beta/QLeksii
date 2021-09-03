@@ -1,5 +1,5 @@
 const schemaFactory = require('../GQLfactory/schema');
-fs = require('fs');
+const fs = require('fs');
 const GQLController = {};
 
 GQLController.createGQLSchema = (req, res, next) => {

@@ -14,7 +14,7 @@ interface igraphQLData {
   Types: string[]
 }
 
-export const VisualContainer: FunctionComponent<props> = ({ fields, tables, uri}) => {
+export const VisualContainer: FunctionComponent<props> = ({ fields, tables, uri }) => {
   const [isMenuOpen, setMenuToOpen] = useState(false);
   const [sideBarData, setSideBarData] = useState<any>({});
   /*
@@ -52,10 +52,10 @@ export const VisualContainer: FunctionComponent<props> = ({ fields, tables, uri}
   return (
   //changed to visualcontainer class
   <div className='VisualContainer'>
-    <Navbar isMenuOpen={isMenuOpen} onMenuToggle={() => setMenuToOpen(!isMenuOpen)} />
+    <Navbar onMenuToggle={() => setMenuToOpen(!isMenuOpen)} />
     <div className='container'>
     {!isMenuOpen ? null : <GraphQLSidebar data={data} tables={tables} fields={fields} isMenuOpen={isMenuOpen} onMenuToggle={() => setMenuToOpen(!isMenuOpen)}/>}
-    <Visualizer fields={fields} tables={tables}/>
+    <Visualizer fields={fields} tables={tables}  uri ={uri} />
     </div>
     
   </div>

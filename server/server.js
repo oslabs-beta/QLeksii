@@ -4,7 +4,12 @@ const PORT = 3333;
 const cors = require('cors');
 const dbRetriver = require('../models/dbRetriver');
 const GQLController = require('./controller/GQLcontroller');
+const injection = require('../models/injection.js')
+
+
+
 const app = express();
+app.use(cors());
 // const bodyParser = require('body-parser');
 
 // parse application/json
@@ -16,15 +21,19 @@ app.use(express.json());
 //   res.status(200).json(req.body);
 // })
 
-app.post('/', dbRetriver, (req, res) => {
+app.post('/', dbRetriver.main, (req, res) => {
   return res
     .status(200)
     .json({ fields: res.locals.db_data, tables: res.locals.db_tables });
 });
 
+app.post('/injection', injection, (req, res) => {
+  return res.status(200)
+});
+
 app.post(
   '/qltest',
-  dbRetriver,
+  dbRetriver.main,
   GQLController.createGQLSchema,
   (req, res) => {
     return res.status(200).json({ data: res.locals.GQLSchema });
@@ -43,6 +52,6 @@ app.use(function (err, req, res, next) {
   return res.status(errorObj.status).json(errorObj.message);
 });
 
-app.listen(PORT, () => {
+module.exports = app.listen(PORT, () => {
   console.log(`Listening on PORT ${PORT}`);
 });

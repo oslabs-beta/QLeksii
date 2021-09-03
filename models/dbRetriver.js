@@ -1,8 +1,9 @@
 const MongoClient = require('mongodb').MongoClient;
 const dovenv = require('dotenv').config();
 const path = require('path');
-
 const MONGO_URL = process.env.mongo_url;
+fs = require('fs');
+
 function linkparser(link){
     const start = link.indexOf('net/');
     const end = link.indexOf('?');
@@ -19,17 +20,30 @@ async function listDatabases(client, dbName){
 };
 async function gimeData(client, result, dbName){
     const outputArr = [];
+ 
+    let obj ={};
     for(let i=0; i<result.length; i++){
      databasesList = await client.db(dbName).collection(result[i]).findOne({});  
      outputArr.push(databasesList);
+ 
     }
     for(let i=0; i<outputArr.length; i++){
+        // console.log(outputArr[i])
         for(el in outputArr[i]){
+            if(!Array.isArray(outputArr[i][el])){
+                const tester =JSON.stringify(outputArr[i][el]);
+                if(tester.slice(1, 3) === "5d" && el !=='_id' ){
+                 
+                 obj[el] =result[i];
+            
+                         
+                }
+            }
          outputArr[i][el] = typeof outputArr[i][el] 
         }
-       
+    //   console.log(obj);
     }
-   return outputArr
+   return outputArr 
 };
 
 async function main(req, res, next){
@@ -42,13 +56,15 @@ async function main(req, res, next){
         const result = await listDatabases(client, db_hook_name);
         res.locals.db_tables = result;
         res.locals.db_data = await  gimeData(client, result, db_hook_name);
+       
+        //  console.log(outer);
            return next();
     } catch (e) {
-        console.error(e);
+        //console.error(e);
     } finally {
         await client.close();
     }
 }
 
-module.exports = main;
+module.exports = {main, linkparser, listDatabases, gimeData};
 
