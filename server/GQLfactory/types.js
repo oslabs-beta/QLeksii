@@ -9,7 +9,7 @@ const type = (str) => {
     case 'string':
       return 'GraphQLString';
     case 'number':
-      return 'GraphQLInt';
+      return 'GraphQLString';
     default:
       return 'GraphQLString';
   }

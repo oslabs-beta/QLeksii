@@ -1,1 +1,53 @@
-{"Types":["const texts = new GraphQLObjectType({ name:'texts', fields:() =>({_id:{type:GraphQLString}, text:{type:GraphQLString}, NPI_ID:{type:GraphQLString}, CIN_ID:{type:GraphQLString}, createdAt:{type:GraphQLString}, })});","const users = new GraphQLObjectType({ name:'users', fields:() =>({_id:{type:GraphQLString}, mainPicture:{type:GraphQLString}, })});","const doctors = new GraphQLObjectType({ name:'doctors', fields:() =>({_id:{type:GraphQLString}, mainPicture:{type:GraphQLString}, uffix:{type:GraphQLString}, firstName:{type:GraphQLString}, lastName:{type:GraphQLString}, speciality:{type:GraphQLString}, NPI_ID:{type:GraphQLString}, email:{type:GraphQLString}, password:{type:GraphQLString}, City:{type:GraphQLString}, })});","const sessions = new GraphQLObjectType({ name:'sessions', fields:() =>({})});"],"Resolvers":"const RootQuery = new GraphQLObjectType({name:'Query', fields:{  texts : {type:new GraphQLList(texts),resolve(parent, args){return texts.find({});}} textsFindById : {type:new GraphQLList(texts),args: {_id:{type : GraphQLString}},resolve(parent, args){return texts.findOne({_id:args._id});}} users : {type:new GraphQLList(users),resolve(parent, args){return users.find({});}} usersFindById : {type:new GraphQLList(users),args: {_id:{type : GraphQLString}},resolve(parent, args){return users.findOne({_id:args._id});}} doctors : {type:new GraphQLList(doctors),resolve(parent, args){return doctors.find({});}} doctorsFindById : {type:new GraphQLList(doctors),args: {_id:{type : GraphQLString}},resolve(parent, args){return doctors.findOne({_id:args._id});}} sessions : {type:new GraphQLList(sessions),resolve(parent, args){return sessions.find({});}} sessionsFindById : {type:new GraphQLList(sessions),args: {_id:{type : GraphQLString}},resolve(parent, args){return sessions.findOne({_id:args._id});}}} });","Mutations":"const Mutation = new GraphQLObjectType({name:'Mutation', fields:{addtextsByID : {type : texts,args : {insert:{type : GraphQLObjectType}}, resolve(parent, args){return texts.create(args.insert)}}updatetextsByID : {type : texts,args : {_id:{type : GraphQLString}, update:{type : GraphQLObjectType}},resolve(parent, args){return texts.updateOne({_id:args._id}, args.update)}}deletetextsByID : {type : texts, args : {_id:{type : GraphQLString}}, resolve(parent, args){return texts.deleteOne({_id:args._id})}}addusersByID : {type : users,args : {insert:{type : GraphQLObjectType}}, resolve(parent, args){return users.create(args.insert)}}updateusersByID : {type : users,args : {_id:{type : GraphQLString}, update:{type : GraphQLObjectType}},resolve(parent, args){return users.updateOne({_id:args._id}, args.update)}}deleteusersByID : {type : users, args : {_id:{type : GraphQLString}}, resolve(parent, args){return users.deleteOne({_id:args._id})}}adddoctorsByID : {type : doctors,args : {insert:{type : GraphQLObjectType}}, resolve(parent, args){return doctors.create(args.insert)}}updatedoctorsByID : {type : doctors,args : {_id:{type : GraphQLString}, update:{type : GraphQLObjectType}},resolve(parent, args){return doctors.updateOne({_id:args._id}, args.update)}}deletedoctorsByID : {type : doctors, args : {_id:{type : GraphQLString}}, resolve(parent, args){return doctors.deleteOne({_id:args._id})}}addsessionsByID : {type : sessions,args : {insert:{type : GraphQLObjectType}}, resolve(parent, args){return sessions.create(args.insert)}}updatesessionsByID : {type : sessions,args : {_id:{type : GraphQLString}, update:{type : GraphQLObjectType}},resolve(parent, args){return sessions.updateOne({_id:args._id}, args.update)}}deletesessionsByID : {type : sessions, args : {_id:{type : GraphQLString}}, resolve(parent, args){return sessions.deleteOne({_id:args._id})}}} });","Query":"type Query {texts:[texts!]!, textsFindById(_id: ID!): texts, users:[users!]!, usersFindById(_id: ID!): users, doctors:[doctors!]!, doctorsFindById(_id: ID!): doctors, sessions:[sessions!]!, sessionsFindById(_id: ID!): sessions, }","Mutation":"type Mutation {updatetextsByID(_id: ID!, update:{text : string, NPI_ID : string, CIN_ID : string, createdAt : object, }) : texts!, deletetextsByID(_id: ID!) : texts!, addtextsByID(_id: ID!, insert{text : string, NPI_ID : string, CIN_ID : string, createdAt : object, }) : texts!, updateusersByID(_id: ID!, update:{mainPicture : string, }) : users!, deleteusersByID(_id: ID!) : users!, addusersByID(_id: ID!, insert{mainPicture : string, }) : users!, updatedoctorsByID(_id: ID!, update:{mainPicture : string, uffix : string, firstName : string, lastName : string, speciality : string, NPI_ID : string, email : string, password : string, City : string, }) : doctors!, deletedoctorsByID(_id: ID!) : doctors!, adddoctorsByID(_id: ID!, insert{mainPicture : string, uffix : string, firstName : string, lastName : string, speciality : string, NPI_ID : string, email : string, password : string, City : string, }) : doctors!, updatesessionsByID(_id: ID!, update:{}) : sessions!, deletesessionsByID(_id: ID!) : sessions!, addsessionsByID(_id: ID!, insert{}) : sessions!, }"}
+const express = require('express');
+const path = require('path');
+const PORT = 3200;
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const { graphqlHTTP } = require('express-graphql');
+const graphql = require('graphql');
+const MongoClient = require('mongodb').MongoClient;
+const app = express();
+let textsT;
+let conn;
+const mongoose = require('mongoose');
+const {GraphQLObjectType, GraphQLList, GraphQLString, GraphQLSchema} = graphql;async function main(){
+  try {
+    await mongoose.connect(mongodb+srv://alex:alex@cluster0.q9ag7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority),
+       {useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true, dbName: myFirstDatabase},}).then()
+        console.log("DB_connection is stable");
+         conn = await mongoose.connection.db;
+      
+    } catch (e) {
+      console.error(e);
+  } 
+} main(); const findOne = async (args, conn)=>{
+  let outputer;
+      const result = await conn.find({}).toArray();
+      for(let i=0; i< result.length; i++){
+        if(result[i]._id == args.id){
+              outputer =  result[i];
+        }
+    }
+return outputer;
+} const texts = new GraphQLObjectType({  name:'texts', 
+  fields:() =>({_id:{type:GraphQLString}, text:{type:GraphQLString}, NPI_ID:{type:GraphQLString}, CIN_ID:{type:GraphQLString}, createdAt:{type:GraphQLString}, })}); const users = new GraphQLObjectType({  name:'users', 
+  fields:() =>({_id:{type:GraphQLString}, mainPicture:{type:GraphQLString}, title:{type:GraphQLString}, firstName:{type:GraphQLString}, lastName:{type:GraphQLString}, DOB:{type:GraphQLString}, state:{type:GraphQLString}, city:{type:GraphQLString}, address:{type:GraphQLString}, CIN_ID:{type:GraphQLString}, email:{type:GraphQLString}, password:{type:GraphQLString}, })}); const doctors = new GraphQLObjectType({  name:'doctors', 
+  fields:() =>({_id:{type:GraphQLString}, mainPicture:{type:GraphQLString}, uffix:{type:GraphQLString}, firstName:{type:GraphQLString}, lastName:{type:GraphQLString}, speciality:{type:GraphQLString}, NPI_ID:{type:GraphQLString}, email:{type:GraphQLString}, password:{type:GraphQLString}, City:{type:GraphQLString}, })}); const sessions = new GraphQLObjectType({  name:'sessions', 
+  fields:() =>({_id:{type:GraphQLString}, UserName:{type:GraphQLString}, WhenLoggedIn:{type:GraphQLString}, Expiration:{type:GraphQLString}, })}); const RootQuery = new GraphQLObjectType({name:'Query', fields:{  textsFindById : 
+  {type:new GraphQLList(texts),args: {_id:{type : GraphQLString}},  
+   resolve: async (parent, args) => { const outputer =  findOne(args, conn.collection(texts));
+   return outputer;}} usersFindById : 
+  {type:new GraphQLList(users),args: {_id:{type : GraphQLString}},  
+   resolve: async (parent, args) => { const outputer =  findOne(args, conn.collection(users));
+   return outputer;}} doctorsFindById : 
+  {type:new GraphQLList(doctors),args: {_id:{type : GraphQLString}},  
+   resolve: async (parent, args) => { const outputer =  findOne(args, conn.collection(doctors));
+   return outputer;}} sessionsFindById : 
+  {type:new GraphQLList(sessions),args: {_id:{type : GraphQLString}},  
+   resolve: async (parent, args) => { const outputer =  findOne(args, conn.collection(sessions));
+   return outputer;}}} }); const newRunner = new GraphQLSchema({query:RootQuery});
+app.get('/graphql', graphqlHTTP({
+  schema: newRunner,
+  graphiql: true,
+}));app.listen(PORT, () => {
+})
