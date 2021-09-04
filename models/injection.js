@@ -3,7 +3,7 @@ const console = require('console');
 const MongoClient = require('mongodb').MongoClient;
 const schemaFactory = require('../server/GQLfactory/schema.js');
 const type = require('../server/GQLfactory/types.js');
-fs = require('fs');
+const fs = require('fs');
 let bigAssResult ='';
 
 function linkparser(link){
@@ -90,7 +90,7 @@ const finder =`const findOne = async (args, conn)=>{
   let outputer;
       const result = await conn.find({}).toArray();
       for(let i=0; i< result.length; i++){
-        if(result[i]._id == args.id){
+        if(result[i]._id == args._id){
               outputer =  result[i];
         }
     }
@@ -104,8 +104,8 @@ const createFindAllTables = (tableName) => {
     resolve: async (parent, args)=>
     {const result = await conn.collection("${tableName}").find({}).toArray(); return result;}}, `;
   str += ` ${tableName.toLowerCase()}FindById : 
-  {type:new GraphQLList(${tableName}),args: {_id:{type : GraphQLString}},  
-   resolve: async (parent, args) => { const outputer =  findOne(args, conn.collection("${tableName}"));
+  {type:${tableName}, args: {_id:{type : GraphQLString}},  
+   resolve: async (parent, args) => { const outputer = await findOne(args, conn.collection("${tableName}"));
    return outputer;}}`; 
   return str;
 };
