@@ -45,4 +45,12 @@ describe('Gitignore Tests', () => {
     });
   })
 
+  it('Testing if dist is included in the file', () => {
+    fs.readFile(gitignore, function(err, data){
+    if(err) throw err;
+    const result = data.includes("dist");
+    expect(result).toEqual(true);
+    });
+  })
+
 });
