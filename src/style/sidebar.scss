@@ -1,1 +1,22 @@
 // this is for sidebar css
+.sidebar-list {
+  list-style: none;
+}
+
+.sidebar-list-title {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  justify-content: center;
+  .sidebar-list-info {
+    text-align: left;
+    list-style: none;
+    font-size: 1rem;
+  }
+}
+
+.sidebar-menu {
+  width: 25rem;
+  text-align: center;
+  height: 100%;
+}

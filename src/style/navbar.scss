@@ -1,13 +1,13 @@
 // this is for navbar css
 .navbar {
-  background-color: aqua;
+  background-color: lighten($navbar, 30%);
   ul {
-      display: flex;
-      flex-direction: row;
-      list-style: none;
-      justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    justify-content: space-between;
   }
-  margin-bottom:0;
+  margin-bottom: 0;
   margin-top: 0;
   padding: 3px;
   width: 100%;
