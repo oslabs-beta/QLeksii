@@ -13,6 +13,7 @@ type props = {
 interface igraphQLData {
   Resolvers: string[];
   Types: string[];
+  uri: string;
 }
 
 export const VisualContainer: FunctionComponent<props> = ({
@@ -65,6 +66,7 @@ export const VisualContainer: FunctionComponent<props> = ({
             fields={fields}
             isMenuOpen={isMenuOpen}
             onMenuToggle={() => setMenuToOpen(!isMenuOpen)}
+            uri={uri}
           />
         )}
       </div>

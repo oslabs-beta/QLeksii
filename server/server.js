@@ -4,9 +4,7 @@ const PORT = 3333;
 const cors = require('cors');
 const dbRetriver = require('../models/dbRetriver');
 const GQLController = require('./controller/GQLcontroller');
-const injection = require('../models/injection.js')
-
-
+const injection = require('../models/injection.js');
 
 const app = express();
 app.use(cors());
@@ -28,7 +26,8 @@ app.post('/', dbRetriver.main, (req, res) => {
 });
 
 app.post('/injection', injection, (req, res) => {
-  return res.status(200)
+  console.log('sending response');
+  return res.status(200).send('ok');
 });
 
 app.post(
