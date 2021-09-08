@@ -2,6 +2,13 @@ const schemaFactory = require('../GQLfactory/schema');
 const fs = require('fs');
 const GQLController = {};
 
+/*  GQL Controller.createGQLSchema is a
+    function  that uses other methods and functions 
+    and generates the final results for Graphql queries
+    and resolvers before it is being outputted in a side window in an app.
+    here we have Resolvers, Mutations, Queries, Types!
+*/
+
 GQLController.createGQLSchema = (req, res, next) => {
   const fields = res.locals.db_data;
   const tables = res.locals.db_tables;
@@ -54,7 +61,10 @@ GQLController.createGQLSchema = (req, res, next) => {
     return next(errObject);
   }
 };
-
+/*  GQL Controller.pushToFile is actually a
+    function that in the early stages of development would give
+    people an ability to export all generated data to file
+*/
 GQLController.pushToFile = (req, res, next) => {
   try {
     fs.writeFile(

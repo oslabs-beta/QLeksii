@@ -6,6 +6,7 @@
     flex-direction: row;
     list-style: none;
     justify-content: space-between;
+    margin-right: 2rem;
   }
   margin-bottom: 0;
   margin-top: 0;
@@ -19,5 +20,9 @@
 
 .menu-button {
   vertical-align: center;
-  width: 6rem;
+  width: 4rem;
+}
+
+.menu-button:hover {
+  opacity: 0.75;
 }

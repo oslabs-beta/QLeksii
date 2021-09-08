@@ -3,7 +3,7 @@ import React, { FunctionComponent } from 'react';
 interface Props {
   uri: string;
 }
-
+// create a function SandBox that sends a post request from the URL input to the path injection
 const SandBox: FunctionComponent<Props> = ({ uri }) => {
   const startSandBox = () => {
     console.log('button click', uri);

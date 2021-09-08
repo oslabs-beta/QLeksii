@@ -3,13 +3,16 @@ import { Darkmode } from './Darkmode';
 type props = {
   onMenuToggle: () => void;
 };
-
+// create a navbar that has Dark Mode and menu button components
 export const Navbar: FunctionComponent<props> = ({ onMenuToggle }) => {
   return (
     <div className='Navbar'>
       <ul>
-        <li>
+        {/* <li>
           <img className='logo' />
+        </li> */}
+        <li>
+          <Darkmode />
         </li>
         <li>
           <img
@@ -17,9 +20,6 @@ export const Navbar: FunctionComponent<props> = ({ onMenuToggle }) => {
             src='./menu_bar.png'
             onClick={onMenuToggle}
           />
-        </li>
-        <li>
-          <Darkmode />
         </li>
       </ul>
     </div>

@@ -7,26 +7,16 @@ interface Props {
   fields: Array<object>;
   uri: string;
 }
+// generates the table and fields for the visualizer component
 const Visualizer: FunctionComponent<Props> = ({ tables, fields, uri }) => {
   const output = tables.map((el, i) => (
     <Card key={i} table={el} fields={fields[i]} />
   ));
 
-  // useEffect(() => {
-  //     fetch("http://localhost:3333/injection", {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({URI:uri}),
-  //     })
-  //     .catch(error => console.log('Error', error));
-
-  //   }, []);
   return (
+    // renders the output array from the generated tables and fields
     <div>
       <div className='wrapper__visualizer'>{output}</div>
-      {/* <button id="darkSide" onClick={handleSubmit}>Join Dark Side</button> */}
     </div>
   );
 };

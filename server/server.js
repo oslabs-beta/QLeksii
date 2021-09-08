@@ -29,7 +29,13 @@ app.post('/injection', injection, (req, res) => {
   console.log('sending response');
   return res.status(200).send('ok');
 });
+/*
 
+An injection is used as a middleware to generate a
+whole new server file with connections to a database and 
+all GraphQl needed aspects to run simple query testing. 
+
+*/
 app.post(
   '/qltest',
   dbRetriver.main,

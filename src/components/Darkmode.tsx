@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+// component for the dark mode functionality
 export const Darkmode: FunctionComponent = () => {
   return (
     <div className='dark_mode'>

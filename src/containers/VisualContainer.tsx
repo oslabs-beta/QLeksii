@@ -9,13 +9,13 @@ type props = {
   fields: Array<object>;
   uri: string;
 };
-
+// stores generated string from post request to server
 interface igraphQLData {
   Resolvers: string[];
   Types: string[];
   uri: string;
 }
-
+// create a VisualContainer component that contains fields, tables, and uri
 export const VisualContainer: FunctionComponent<props> = ({
   fields,
   tables,
@@ -23,18 +23,7 @@ export const VisualContainer: FunctionComponent<props> = ({
 }) => {
   const [isMenuOpen, setMenuToOpen] = useState(false);
   const [sideBarData, setSideBarData] = useState<any>({});
-  /*
-  toggleMenu() {
-    this.setState({isMenuOpen: !this.state.isMenuOpen})
-  }
-
-  const [checkedState, setCheckedState] = useState(
-    new Array(toppings.length).fill(false)
-  );
-
-
-  */
-
+  // sends a post request to qltest path with URI as JSON request body
   useEffect(() => {
     fetch('http://localhost:3333/qltest', {
       method: 'POST',
@@ -45,7 +34,6 @@ export const VisualContainer: FunctionComponent<props> = ({
     })
       .then((response) => response.json())
       .then((data) => {
-        // console.log('Success', data);
         setSideBarData(data);
       })
       .catch((error) => console.log('Error', error));
@@ -54,7 +42,7 @@ export const VisualContainer: FunctionComponent<props> = ({
   const { data } = sideBarData;
 
   return (
-    //changed to visualcontainer class
+    // renders the fields, tables, and uri on the visual container div
     <div className='VisualContainer'>
       <Navbar onMenuToggle={() => setMenuToOpen(!isMenuOpen)} />
       <div className='container'>

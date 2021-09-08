@@ -1,4 +1,5 @@
 // this is for dark mode theme
+
 .switch {
   position: relative;
   display: inline-block;
@@ -8,6 +9,10 @@
 
 .switch input {
   display: none;
+}
+
+.switch:hover {
+  opacity: 0.9;
 }
 
 .slider {
@@ -66,7 +71,6 @@ input:checked + .slider:before {
 input:checked + .slider:after {
   content: 'ON';
 }
-
 .dark_mode {
   font-size: 12px;
   font-family: Monospace;
@@ -90,6 +94,12 @@ input:checked + .slider:after {
     background: $primary-dark;
     color: #eeeeee;
   }
+  .table_header {
+    border: 2px darken($primary-dark, 80%);
+  }
+  .wrapper {
+    box-shadow: 3px 8px darken($primary-dark, 10%);
+  }
 }
 
 @media (prefers-color-scheme: light) {
@@ -104,5 +114,11 @@ input:checked + .slider:after {
   .CodeMirror-linenumbers {
     background: $primary-light;
     color: #171010;
+  }
+  .table_header {
+    border: 2px darken($primary-light, 80%);
+  }
+  .wrapper {
+    box-shadow: 3px 8px darken($primary-light, 10%);
   }
 }

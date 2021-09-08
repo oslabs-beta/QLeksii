@@ -16,7 +16,11 @@
 }
 
 .sidebar-menu {
-  width: 25rem;
+  width: 40rem;
   text-align: center;
   height: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  overflow-x: scroll;
 }
