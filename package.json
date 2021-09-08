@@ -11,7 +11,8 @@
     "watch": "webpack --config webpack.config.ts --watch",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "build-installer": "electron-builder"
+    "build-installer": "electron-builder",
+    "electron": "electron ."
   },
   "build": {
     "appId": "qleksii-app",
@@ -52,6 +53,8 @@
     "fs": "0.0.1-security",
     "graphql": "^15.5.1",
     "mongodb": "^4.1.0",
+    "mongoose": "^6.0.5",
+    "path": "^0.12.7",
     "react": "^16.9.2",
     "react-codemirror": "^1.0.0",
     "react-codemirror2": "^7.2.1",

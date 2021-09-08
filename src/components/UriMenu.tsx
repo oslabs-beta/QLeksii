@@ -1,28 +1,49 @@
-import React, { FunctionComponent, useState }  from "react";
+import React, { FunctionComponent, useState } from 'react';
+import { Navbar } from './Navbar';
 type props = {
-  handleClick: (arg: {fields: [], tables: []}) => void
-  handleURI: (uri: string) => void
-}
-export const UriMenu: FunctionComponent<props> = ({handleClick, handleURI}) => {
+  handleClick: (arg: { fields: []; tables: [] }) => void;
+  handleURI: (uri: string) => void;
+};
+// component for the URI input
+export const UriMenu: FunctionComponent<props> = ({
+  handleClick,
+  handleURI,
+}) => {
   const [change, setChange] = useState('');
+  // sends a post request with URI as JSON request body to the server
   const handleSubmit = () => {
-    fetch("http://localhost:3333/", {
+    fetch('http://localhost:3333/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({URI:change}),
+      body: JSON.stringify({ URI: change }),
     })
-    .then(response => response.json())
-    .then(data => {
-      // console.log('Success', change);
-      handleURI(change);
-      handleClick(data);
-    })
-    .catch(error => console.log('Error', error));
-   
-  }
-  return(<div className="wrapper__Uri">
-  <input className="Input__uri" type='text' onChange={(e)=>{setChange(e.target.value)}} value={change} placeholder='Write Uri Here'/>
-  <button onClick={handleSubmit}>Send URI</button>
-</div>)}
+      .then((response) => response.json())
+      .then((data) => {
+        handleURI(change);
+        handleClick(data);
+      })
+      .catch((error) => console.log('Error', error));
+  };
+  return (
+    // renders the URI component to the app
+    <div className='wrapper__Uri'>
+      <Navbar onMenuToggle={() => null} />
+      <div className='URI_Bar'>
+        <input
+          className='Input__uri'
+          type='text'
+          onChange={(e) => {
+            setChange(e.target.value);
+          }}
+          value={change}
+          placeholder='Write Uri Here'
+        />
+        <button className='sendURI' onClick={handleSubmit}>
+          Send URI
+        </button>
+      </div>
+    </div>
+  );
+};

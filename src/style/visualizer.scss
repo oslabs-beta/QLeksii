@@ -1,2 +1,8 @@
 // this is for visualizer scss files
-
+.wrapper__visualizer {
+  display: flex;
+  flex-direction: row;
+  overflow: wrap;
+  width: auto;
+  height: auto;
+}

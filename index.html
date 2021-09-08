@@ -1,24 +1,14 @@
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy"  />
-  <meta http-equiv="Content-Security-Policy" content="script-src 'sha256-pQY0fuQAnnVQH5nQfjo80rzGkQzeN3JeAtAJ+1KcD4k=' 'self' blob:">
-</head>
-<body>
-  <div class="dark_mode">
-    <div class="text">Dark Mode</div>
-    <label class="switch">
-    <input type="checkbox" id="togBtn">
-   <div class="slider round"></div>
-  </label>
-  <button id="darkSide">SandBox</button> 
-  </div>
-  <!-- <button id="darkSide">Join Dark Side</button> -->
-    <div id="root">
-  </div>
-  <script>window.global = window;</script>
-  <script src="./build/bundle.js"></script>
-  <script src="./build/darkmode.js"></script>
-
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" />
+  </head>
+  <body>
+    <!-- <button id="darkSide">Join Dark Side</button> -->
+    <div id="root"></div>
+    <script>
+      window.global = window;
+    </script>
+    <script src="./build/bundle.js"></script>
+  </body>
 </html>

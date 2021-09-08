@@ -1,12 +1,8 @@
 const type = require('./types');
 
 const schemaFactory = {};
-// tail = `} });`
-// queryHead = `const RootQuery = new GraphQLObjectType({name:'Query', fields:{ `
-// mutationHead = `const Mutation = new GraphQLObjectType({name:'Mutation', fields{`
 schemaFactory.createSimpletype = (tableName, tableFields) => {
   let str = '';
-  // if(tableFields===null) return 'no fields were identified'
 
   str += `const ${tableName} = new GraphQLObjectType({
     name:'${tableName}', 
@@ -123,7 +119,5 @@ schemaFactory.createAddByTable = (tableName) => {
     `;
   return str;
 };
-
-// console.log(schemaFactory.createResolveAllTable("User"))
 
 module.exports = schemaFactory;
