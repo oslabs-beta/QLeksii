@@ -1,8 +1,7 @@
-
-
+// modifies the string input to specific GraphQL entries
 const type = (str) => {
   switch (str) {
-   case 'array':
+    case 'array':
       return 'GraphQLList';
     case 'object':
       return 'GraphQLString';
@@ -15,4 +14,4 @@ const type = (str) => {
   }
 };
 
-module.exports =type;
+module.exports = type;

@@ -8,34 +8,23 @@ const injection = require('../models/injection.js');
 
 const app = express();
 app.use(cors());
-// const bodyParser = require('body-parser');
-
-// parse application/json
-// app.use(bodyParser.json())
 
 app.use(express.json());
 
-// app.post('/', (req, res) => {
-//   res.status(200).json(req.body);
-// })
-
+// route for the post request to retrieve database
 app.post('/', dbRetriver.main, (req, res) => {
   return res
     .status(200)
     .json({ fields: res.locals.db_data, tables: res.locals.db_tables });
 });
 
+// route for post request to the injection middleware
 app.post('/injection', injection, (req, res) => {
   console.log('sending response');
   return res.status(200).send('ok');
 });
-/*
 
-An injection is used as a middleware to generate a
-whole new server file with connections to a database and 
-all GraphQl needed aspects to run simple query testing. 
-
-*/
+// route for post request to qltest to generate schemas
 app.post(
   '/qltest',
   dbRetriver.main,
