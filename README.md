@@ -34,3 +34,10 @@ Alongside the tabs for the queries, the user can also use a "sandbox", where it 
 
 - Integration with SQL Databases
 - Export generated GraphQL queries for the user to use as they wish
+
+## Contributors:
+- [Damien Evans](https://github.com/dnyceboy)
+- [Dennis Palomo](https://github.com/dennispalomo)
+- [Hasan H Ozutemiz](https://github.com/hozutemiz)
+- [Oleksii Hordiienko](https://github.com/alexr1der)
+- [Storm Ross](https://github.com/sar516)
