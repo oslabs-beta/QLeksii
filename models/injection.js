@@ -5,21 +5,14 @@ const schemaFactory = require('../server/GQLfactory/schema.js');
 const type = require('../server/GQLfactory/types.js');
 const fs = require('fs');
 
+// modifies the input URI to be sent to the server
 function linkparser(link) {
   const start = link.indexOf('net/');
   const end = link.indexOf('?');
   const res = link.slice(Number(start) + 4, end);
   return res;
 }
-//link parser retrieves a DB name so we can simply access that DB
 
-// fetch("http://localhost:3333/injection", {
-//   method: 'POST',
-//   headers: {
-//     'Content-Type': 'application/json',
-//   },
-//   body: JSON.stringify({URI:change}),
-// }).catch(error => console.log('Error', error));
 const top = `const express = require('express');
 const path = require('path');
 const PORT = 3200;
