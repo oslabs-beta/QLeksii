@@ -3,10 +3,6 @@ import { CodeMirror } from '../components/CodeMirror';
 import SandBox from './SandBox';
 
 type props = {
-  onMenuToggle: () => void;
-  isMenuOpen: boolean;
-  tables: Array<string>;
-  fields: Array<object>;
   data: igraphQLData;
   uri: string;
 };
@@ -21,14 +17,7 @@ interface igraphQLData {
 }
 
 // exports the table, fields, etc
-export const GraphQLSidebar: FunctionComponent<props> = ({
-  tables,
-  fields,
-  isMenuOpen,
-  onMenuToggle,
-  data,
-  uri,
-}) => {
+export const GraphQLSidebar: FunctionComponent<props> = ({ data, uri }) => {
   const [display, setDisplay] = useState('');
   const [code, setCode] = useState('');
   const [codeIsOpen, setCodeIsOpen] = useState(false);
