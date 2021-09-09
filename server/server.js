@@ -36,6 +36,7 @@ app.post(
         data: res.locals.GQLSchema,
         fields: res.locals.db_data,
         tables: res.locals.db_tables,
+        tests: 'test'
       });
   }
 );

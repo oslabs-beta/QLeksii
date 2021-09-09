@@ -36,7 +36,7 @@ export const MainContainer: FunctionComponent = () => {
   function handleURI(uri: string) {
     setURI(uri);
   }
-
+  console.log(tables);
   return (
     // renders the div class that includes uri, fields, and tables
     <div className='MainContainer'>

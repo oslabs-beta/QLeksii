@@ -18,7 +18,7 @@ async function listDatabases(client, dbName) {
   return output;
 }
 // retrieves the collections and tables from the database, and provides the type of value for each tables
-async function gimeData(client, result, dbName) {
+async function retrieveData(client, result, dbName) {
   const outputArr = [];
 
   let obj = {};
@@ -47,7 +47,7 @@ async function main(req, res, next) {
     const db_hook_name = await linkparser(req.body.URI);
     const result = await listDatabases(client, db_hook_name);
     res.locals.db_tables = result;
-    res.locals.db_data = await gimeData(client, result, db_hook_name);
+    res.locals.db_data = await retrieveData(client, result, db_hook_name);
     return next();
   } catch (e) {
   } finally {
@@ -55,4 +55,4 @@ async function main(req, res, next) {
   }
 }
 
-module.exports = { main, linkparser, listDatabases, gimeData };
+module.exports = { main, linkparser, listDatabases, retrieveData };

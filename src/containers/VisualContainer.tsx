@@ -27,24 +27,6 @@ export const VisualContainer: FunctionComponent<props> = ({
   data,
   isMenuOpen,
 }) => {
-  // const [sideBarData, setSideBarData] = useState<any>({});
-  // sends a post request to qltest path with URI as JSON request body
-  // useEffect(() => {
-  //   fetch('http://localhost:3333/qltest', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({ URI: uri }),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setSideBarData(data);
-  //     })
-  //     .catch((error) => console.log('Error', error));
-  // }, []);
-  //
-  // const { data } = sideBarData;
 
   return (
     // renders the fields, tables, and uri on the visual container div

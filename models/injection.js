@@ -57,7 +57,7 @@ async function listDatabases(client, dbName) {
   databasesList.forEach((l) => output.push(l.name));
   return output;
 }
-async function gimeData(client, result, dbName) {
+async function retrieveData(client, result, dbName) {
   const outputArr = [];
 
   let obj = {};
@@ -157,7 +157,7 @@ app.listen(PORT, () => {console.log('listening on port 3200');
 /*
 at this point we need a listener for server file! 
 */
-const gBuild = async (req, res, next) => {
+const buildServerFile = async (req, res, next) => {
   const client = new MongoClient(req.body.URI);
   try {
     await client.connect();
@@ -166,43 +166,43 @@ const gBuild = async (req, res, next) => {
 
     const tables = await listDatabases(client, dbName);
 
-    const fields = await gimeData(client, tables, dbName);
+    const fields = await retrieveData(client, tables, dbName);
 
     let Resolvers = ` 
     const RootQuery = new GraphQLObjectType({name:'Query', fields:{ `;
     const tail = `} });`;
-    let bigAssResult = '';
-    bigAssResult += top;
+    let result = '';
+    result += top;
 
-    bigAssResult += main(dbName, req.body.URI);
+    result += main(dbName, req.body.URI);
 
-    bigAssResult += mainR;
+    result += mainR;
 
-    bigAssResult += finder;
+    result += finder;
 
-    tables.forEach((l, i) => (bigAssResult += createSimpletype(l, fields[i])));
+    tables.forEach((l, i) => (result += createSimpletype(l, fields[i])));
 
-    bigAssResult += Resolvers;
+    result += Resolvers;
 
     tables.forEach((l) => {
       if (
-        bigAssResult.slice(bigAssResult.length - 9, bigAssResult.length) ===
+        result.slice(result.length - 9, result.length) ===
         'fields:{ '
       )
-        bigAssResult += createFindAllTables(l);
+        result += createFindAllTables(l);
       else {
-        bigAssResult += ',';
-        bigAssResult += createFindAllTables(l);
+        result += ',';
+        result += createFindAllTables(l);
       }
     });
-    bigAssResult += tail;
+    result += tail;
 
-    bigAssResult += end;
+    result += end;
 
-    bigAssResult += listen;
+    result += listen;
     await fs.writeFile(
       './remoteserver/server.js',
-      bigAssResult,
+      result,
       function (err) {
         if (err) return console.log(err);
       }
@@ -220,4 +220,4 @@ gBuild is where all logic for outputting the whole server file together.
 
 */
 
-module.exports = gBuild;
+module.exports = buildServerFile;

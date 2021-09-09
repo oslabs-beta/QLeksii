@@ -49,9 +49,6 @@ function createWindow(params) {
     return nativeTheme.shouldUseDarkColors;
   });
 
-  ipcMain.handle('dark-mode:system', () => {
-    nativeTheme.themeSource = 'system';
-  });
   // starts up the remote server
   ipcMain.handle('switch', async () => {
     var cmd2 = 'node ./remoteserver/server.js';
