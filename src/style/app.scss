@@ -14,7 +14,12 @@ h1 {
   color: white;
   background-color: $primary-light;
 }
-
+.MainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+}
 .wrapper__Uri {
   display: flex;
   flex-direction: column;
@@ -61,9 +66,7 @@ input:focus {
   flex-direction: row;
   height: 100%;
   width: 100%;
-  margin-top: 0;
-  margin-right: 0;
-  justify-content: space-between;
+  justify-content: space-around;
   overflow-x: none;
 }
 
@@ -71,6 +74,7 @@ input:focus {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
 }
 
 .wrapper__visualizer {
@@ -81,6 +85,7 @@ input:focus {
   margin-right: 0;
   margin-left: 0;
   padding: 1% 5%;
+  justify-content: space-between;
 }
 
 .text {

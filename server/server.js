@@ -30,7 +30,13 @@ app.post(
   dbRetriver.main,
   GQLController.createGQLSchema,
   (req, res) => {
-    return res.status(200).json({ data: res.locals.GQLSchema });
+    return res
+      .status(200)
+      .json({
+        data: res.locals.GQLSchema,
+        fields: res.locals.db_data,
+        tables: res.locals.db_tables,
+      });
   }
 );
 
