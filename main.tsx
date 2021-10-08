@@ -1,82 +1,92 @@
-
-const {app, BrowserWindow, ipcMain, nativeTheme} = require('electron');
+const {
+  app,
+  BrowserWindow,
+  ipcMain,
+  nativeTheme,
+  globalShortcut,
+} = require('electron');
 const path = require('path');
-// require('./server/server.js');
+const fs = require('fs');
 var exec = require('child_process').exec;
 
+// creates the window for URI input for electron app
 function createWindow(params) {
+  const win = new BrowserWindow({
+    width: 1200,
+    height: 800,
+    icon: __dirname + '/icon.png',
+    autoHideMenuBar: true,
+    webPreferences: {
+      preload: path.join(__dirname, './build/preload.js'),
+      nodeIntegration: true,
+      worldSafeExecuteJavaScript: true,
+      contextIsolation: true,
+    },
+  });
+  globalShortcut.register('Alt+CommandOrControl+I', () => {
+    // console.log('Electron loves global shortcuts!');
+    win.webContents.toggleDevTools();
+  });
+  // creates a child window for the graphql path
+  const child = new BrowserWindow({
+    width: 1200,
+    height: 800,
+    icon: __dirname + '/icon.png',
+    autoHideMenuBar: true,
+    parent: win,
+  });
 
+  child.hide();
+  win.loadFile('index.html');
 
-    const win = new BrowserWindow({
-
-        width: 1200,
-        height: 800,
-        icon: __dirname + '/icon.png',
-        autoHideMenuBar: false,
-        webPreferences:{
-           preload: path.join(__dirname, './build/preload.js'),
-           nodeIntegration: true,
-           worldSafeExecuteJavaScript: true,
-           contextIsolation:true,
-        }
-    });
-    const child = new BrowserWindow({
-        width:1200,
-        height:800,
-        icon: __dirname + '/icon.png',
-        autoHideMenuBar: true,
-        parent: win })
-   
-
-//      splash = new BrowserWindow({width: 810, height: 610, transparent: true, frame: false, alwaysOnTop: true});
-// splash.loadURL(`splash.html`);
-   child.hide();
-   win.loadFile('index.html')
-  //  another.hide()
-  
-    ipcMain.handle('dark-mode:toggle', () => {
+  // provides the dark mode functionality, theme is light by default
+  ipcMain.handle('dark-mode:toggle', () => {
     if (nativeTheme.shouldUseDarkColors) {
-      nativeTheme.themeSource = 'light'
+      nativeTheme.themeSource = 'light';
     } else {
-      nativeTheme.themeSource = 'dark'
+      nativeTheme.themeSource = 'dark';
     }
-    return nativeTheme.shouldUseDarkColors
-  })
+    return nativeTheme.shouldUseDarkColors;
+  });
 
-  ipcMain.handle('dark-mode:system', () => {
-    nativeTheme.themeSource = 'system'
-  })
-
-  ipcMain.handle('switch', async() => {
-    // console.log("here")
-    // var cmd = 'node ./server/server.js';
+  // starts up the remote server
+  ipcMain.handle('switch', async () => {
     var cmd2 = 'node ./remoteserver/server.js';
-    await exec(cmd2, function(error, stdout, stderr) {
-    // console.log("done")
+    await exec(cmd2, function (error, stdout, stderr) {
+      console.log('stdout ', stdout);
+      console.log(stderr);
     });
-   await child.loadURL('http://localhost:3200/graphql');
-
-   child.show();
-  })
-  
-   child.on('close', function(event){
-     event.preventDefault();
-     //we need to write on close event to kill port 3200 so we dont have it running always 
-     // we need to clear that server file (for some reason it doesnt being overwritten by fs) 
-       var cmd3 = 'npx kill-port 3200';
-       exec(cmd3, function(error, stdout, stderr) { 
-
-       });
-
-    // console.log("done")
-   
-        child.hide();
+    // loads the page from the graphql path on the child window
+    setTimeout(() => {
+      console.log('loading url');
+      child.loadURL('http://localhost:3200/graphql');
+      child.show();
+    }, 500);
+  });
+  // closes child window and kills the port used for graphiql
+  child.on('close', function (event) {
+    event.preventDefault();
+    var cmd3 = 'npx kill-port 3200';
+    exec(cmd3, function (error, stdout, stderr) {
+      child.hide();
     });
+  });
+
+  // closes main window and kills the port used for remote server
+  win.on('closed', async function (event) {
+    await exec('npx kill-port 3333', function (error, stdout, stderr) {
+      console.log(stdout);
+    });
+    if (fs.existsSync('./remoteserver/server.js')) {
+      fs.unlink('./remoteserver/server.js', function (err) {
+        if (err) {
+          console.error(err);
+        } else {
+          console.log('File removed:', './remoteserver/server.js');
+        }
+      });
+    }
+  });
 }
-// require('electron-reload')(__dirname, {
-
-//     electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
-// })
-
 
 app.whenReady().then(createWindow);

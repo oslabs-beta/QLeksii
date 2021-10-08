@@ -35,14 +35,6 @@ describe('React Unit Tests', () => {
       expect(wrapper.find('ul')).toHaveLength(1);
     });
 
-    it('Div has list items with image tag inside', () => {
-      expect(wrapper.find('img')).toHaveLength(2);
-    })
-
-    it('list item img has class of logo', () => {
-      expect(wrapper.find('.logo').exists()).toEqual(true);
-    })
-
   });
 
   describe('Visual Container Unit Tests', () => {

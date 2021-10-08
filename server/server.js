@@ -4,39 +4,40 @@ const PORT = 3333;
 const cors = require('cors');
 const dbRetriver = require('../models/dbRetriver');
 const GQLController = require('./controller/GQLcontroller');
-const injection = require('../models/injection.js')
-
-
+const injection = require('../models/injection.js');
 
 const app = express();
 app.use(cors());
-// const bodyParser = require('body-parser');
-
-// parse application/json
-// app.use(bodyParser.json())
 
 app.use(express.json());
 
-// app.post('/', (req, res) => {
-//   res.status(200).json(req.body);
-// })
-
+// route for the post request to retrieve database
 app.post('/', dbRetriver.main, (req, res) => {
   return res
     .status(200)
     .json({ fields: res.locals.db_data, tables: res.locals.db_tables });
 });
 
+// route for post request to the injection middleware
 app.post('/injection', injection, (req, res) => {
-  return res.status(200)
+  console.log('sending response');
+  return res.status(200).send('ok');
 });
 
+// route for post request to qltest to generate schemas
 app.post(
   '/qltest',
   dbRetriver.main,
   GQLController.createGQLSchema,
   (req, res) => {
-    return res.status(200).json({ data: res.locals.GQLSchema });
+    return res
+      .status(200)
+      .json({
+        data: res.locals.GQLSchema,
+        fields: res.locals.db_data,
+        tables: res.locals.db_tables,
+        tests: 'test'
+      });
   }
 );
 

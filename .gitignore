@@ -3,3 +3,4 @@ build/bundle.js
 .env
 package-lock.json
 out/
+dist
