@@ -6,6 +6,20 @@ QLeksii is a Graphical User Interface (GUI) designed for GraphQL to help enginee
 
 # How does it work?
 
+## Installation Instructions
+1. Clone the repo
+   ```sh
+   git clone https://github.com/github_username/repo_name.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Run Application in Terminal
+   ```sh
+   npm start
+   ```
+
 ## Accessing the database
 
 Once the user provides the database URL, the application will handle all the work for you. It will first mutate the link provided into something the server recognizes, then the server will do its job to retrieve all the information from the database. Once all the information is extracted, the application will dynamically create cards for each table in the database including the type of data of each entry, which will be shown in the application.
