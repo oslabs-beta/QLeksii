@@ -1,0 +1,2 @@
+mongo_url=mongodb+srv://alex:alex@cluster0.q9ag7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+test=mongodb+srv://damien:Codesmith@cluster0.prul2.mongodb.net/starwars?retryWrites=true&w=majority
