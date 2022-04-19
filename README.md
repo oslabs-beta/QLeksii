@@ -9,7 +9,7 @@ QLeksii is a Graphical User Interface (GUI) designed for GraphQL to help enginee
 ## Installation Instructions
 1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/oslabs-beta/QLeksii.git
    ```
 2. Install NPM packages
    ```sh
